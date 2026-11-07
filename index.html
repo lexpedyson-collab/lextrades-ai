@@ -216,18 +216,6 @@ function draw(){
  sample.slice(-30).reverse()
  .map(n=>'<span>'+n+'</span>').join("");
 }
- let c=counts();
- document.getElementById("latest").textContent=sample[99];
- document.getElementById("count").textContent=sample.length+" ticks";
- document.getElementById("frequencies").innerHTML=c.map((n,i)=>
- '<div class="digit"><strong>'+i+'</strong><small>'+n+
- '%? </small><div class="bar"><div class="fill" style="width:'+
- (n/sample.length*100)+'%"></div></div><small>'+
- (n/sample.length*100).toFixed(1)+'%</small></div>'
- ).join("");
- document.getElementById("history").innerHTML=
- sample.slice(-30).reverse().map(n=>'<span>'+n+'</span>').join("");
-}
 function choose(m,b){
  mode=m;
  document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));
