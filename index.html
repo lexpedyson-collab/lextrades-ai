@@ -54,7 +54,37 @@ nav{position:fixed;bottom:0;left:0;width:100%;
  background:#0c1422;border-top:1px solid #29374b;
  display:flex;justify-content:space-around;padding:17px 0}
 nav a{color:#aab7cb;text-decoration:none;font-size:11px}
-</style>
+/* LEX AI ANIMATED DIGIT TICKER */
+.ticker-box{
+ background:#111a2a;
+ border:1px solid #26334a;
+ border-radius:13px;
+ padding:15px;
+ margin:15px 0;
+ overflow:hidden;
+}
+.ticker-window{
+ overflow:hidden;
+ white-space:nowrap;
+ width:100%;
+}
+.ticker-track{
+ display:inline-flex;
+ gap:12px;
+ animation:digitScroll 18s linear infinite;
+}
+.ticker-track span{
+ background:#20334a;
+ color:#37e5a0;
+ font-size:23px;
+ font-weight:bold;
+ padding:13px 17px;
+ border-radius:8px;
+}
+@keyframes digitScroll{
+ from{transform:translateX(0)}
+ to{transform:translateX(-50%)}
+ }</style>
 </head>
 <body>
 
