@@ -3,218 +3,276 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LEXTRADES AI | Market Intelligence</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEXTRADES AI - Digit Intelligence</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#080d18;color:#edf3ff;
-font-family:Arial,sans-serif;padding:15px}
+body{
+ margin:0;padding:15px;background:#080d18;color:#f1f5ff;
+ font-family:Arial,sans-serif;padding-bottom:80px
+}
 header{display:flex;justify-content:space-between;
-align-items:center;padding:12px 0 22px}
-.logo{font-size:21px;font-weight:900;color:#37e5a0}
+ align-items:center;padding:12px 0 22px}
+.logo{font-size:22px;font-weight:900;color:#35e5a0}
 .logo span{color:white}
-.status{font-size:10px;color:#37e5a0}
-h2{font-size:22px;margin:12px 0 5px}
-h3{font-size:16px;margin:0 0 16px}
-.muted{color:#8997ae;font-size:12px}
-.card{background:#111a2a;border:1px solid #26334a;
-border-radius:13px;padding:16px;margin:13px 0}
-.balance{font-size:27px;font-weight:bold;margin:10px 0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.metric{font-size:18px;font-weight:bold;margin-top:10px}
-.green{color:#37e5a0}
-.red{color:#ff657c}
-.purple{color:#a78bfa}
-select{background:#1b2940;color:white;
-border:1px solid #34445e;padding:11px;
-border-radius:8px;width:100%;margin:8px 0}
+.status{font-size:10px;color:#35e5a0}
+h2{font-size:21px;margin-bottom:5px}
+h3{font-size:16px}
+.muted{color:#8997ad;font-size:12px}
+.card{background:#111b2c;border:1px solid #26364e;
+ border-radius:14px;padding:16px;margin:14px 0}
+select{background:#1c2b41;color:white;border:1px solid #34445e;
+ padding:13px;border-radius:8px;width:100%;margin-top:10px}
 button{background:#26364e;color:white;border:0;
-padding:10px 13px;border-radius:7px;font-weight:bold}
-button.active{background:#37e5a0;color:#07140f}
-.primary{background:#37e5a0;color:#07140f;
-width:100%;padding:14px;margin-top:12px}
-.tabs{display:flex;gap:7px;overflow-x:auto;margin:12px 0}
-.tabs button{white-space:nowrap;font-size:11px}
-.chart{height:210px;width:100%;display:block}
+ border-radius:8px;padding:12px;font-weight:bold}
+button.active{background:#35e5a0;color:#07140f}
+.green{color:#35e5a0}
+.purple{color:#a78bfa}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.digit{background:#1b2940;border-radius:8px;
+ text-align:center;padding:10px 2px}
+.digit strong{font-size:17px}
+.digit small{display:block;color:#a5b2c6;font-size:10px;margin-top:5px}
+.bar{height:5px;background:#29374b;border-radius:5px;margin-top:7px}
+.fill{height:5px;background:#35e5a0;border-radius:5px}
 .row{display:flex;justify-content:space-between;
-align-items:center;padding:13px 0;
-border-bottom:1px solid #283449;font-size:13px}
-.symbol{font-weight:bold}
-.scanner{text-align:center;padding:15px}
-.orb{height:85px;width:85px;border-radius:50%;
-border:2px solid #37e5a0;display:flex;
-align-items:center;justify-content:center;
-margin:12px auto;color:#37e5a0;font-weight:bold;
-box-shadow:0 0 20px #37e5a033}
-.result{background:#19283b;border-radius:9px;
-padding:13px;margin-top:12px;text-align:left}
-nav{position:sticky;bottom:0;background:#080d18;
-border-top:1px solid #26334a;display:flex;
-justify-content:space-around;padding:15px 0;
-margin:15px -15px 0}
-nav a{color:#a3afc3;text-decoration:none;font-size:11px}
-footer{text-align:center;color:#73819a;font-size:10px;
-padding:18px}
+ padding:12px 0;border-bottom:1px solid #28364b;font-size:13px}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tabs button{font-size:12px;padding:13px 3px}
+.big{font-size:34px;font-weight:bold;color:#35e5a0}
+.scanner{text-align:center;padding:10px}
+.orb{width:82px;height:82px;border:2px solid #35e5a0;
+ border-radius:50%;display:flex;align-items:center;
+ justify-content:center;margin:15px auto;
+ color:#35e5a0;font-weight:bold;box-shadow:0 0 20px #35e5a033}
+.result{background:#1b2940;border-radius:10px;padding:14px;margin-top:12px}
+.full{width:100%;background:#35e5a0;color:#07140f;margin-top:13px}
+.history{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.history span{background:#25354c;border-radius:7px;
+ padding:10px;font-weight:bold;min-width:30px;text-align:center}
+nav{position:fixed;bottom:0;left:0;width:100%;
+ background:#0c1422;border-top:1px solid #29374b;
+ display:flex;justify-content:space-around;padding:17px 0}
+nav a{color:#aab7cb;text-decoration:none;font-size:11px}
 </style>
 </head>
 <body>
 
 <header>
  <div class="logo">LEX<span>TRADES</span> AI</div>
- <div class="status">● SYSTEM ONLINE</div>
+ <div class="status">● DIGIT ENGINE</div>
 </header>
 
-<h2>Trading Dashboard</h2>
-<p class="muted">AI-powered market intelligence workspace</p>
+<h2>Digit Intelligence</h2>
+<p class="muted">Deriv Synthetic Indices Statistical Analysis</p>
 
-<div class="grid">
- <div class="card">
-  <div class="muted">DEMO PORTFOLIO</div>
-  <div class="balance">$1,000.00</div>
-  <div class="muted">Virtual balance only</div>
- </div>
- <div class="card">
-  <div class="muted">MARKET STATUS</div>
-  <div class="metric green">READY</div>
-  <div class="muted">Demo environment</div>
- </div>
-</div>
-
-<div class="card" id="markets">
- <h3>Market Overview</h3>
- <select id="market" onchange="drawChart()">
-  <option>BTC/USD</option>
-  <option>ETH/USD</option>
-  <option>EUR/USD</option>
-  <option>GBP/USD</option>
-  <option>GOLD</option>
+<div class="card">
+ <div class="muted">SELECT SYNTHETIC MARKET</div>
+ <select id="market">
+  <option>Volatility 10 Index</option>
+  <option>Volatility 25 Index</option>
+  <option>Volatility 50 Index</option>
+  <option>Volatility 75 Index</option>
+  <option>Volatility 100 Index</option>
+  <option>Volatility 10 (1s) Index</option>
+  <option>Volatility 25 (1s) Index</option>
+  <option>Volatility 50 (1s) Index</option>
+  <option>Volatility 75 (1s) Index</option>
+  <option>Volatility 100 (1s) Index</option>
  </select>
- <div class="muted">DEMO PRICE</div>
- <div class="balance" id="price">$67,450.00</div>
- <div class="muted">Illustrative price — not a live quote</div>
-
- <div class="tabs">
-  <button class="active" onclick="setTF(this)">1M</button>
-  <button onclick="setTF(this)">5M</button>
-  <button onclick="setTF(this)">15M</button>
-  <button onclick="setTF(this)">1H</button>
-  <button onclick="setTF(this)">4H</button>
+ <div class="row">
+  <span>Data source</span>
+  <b class="purple">Sample data</b>
  </div>
-
- <svg id="chart" class="chart"
- viewBox="0 0 340 210" preserveAspectRatio="none">
- </svg>
- <div class="muted">Illustrative chart data • Simulation only</div>
+ <div class="row">
+  <span>Connection</span>
+  <b class="muted">Live feed not connected</b>
+ </div>
 </div>
 
 <div class="card">
- <h3>LEX AI Central Scanner</h3>
+ <div class="muted">LATEST SAMPLE DIGIT</div>
+ <div class="scanner">
+  <div class="big" id="latest">7</div>
+  <div class="muted">Demonstration digit</div>
+ </div>
+ <div class="row">
+  <span>Sample size</span><b id="count">100 ticks</b>
+ </div>
+ <div class="row">
+  <span>Unique digits</span><b>0–9</b>
+ </div>
+</div>
+
+<div class="card">
+ <h3>Digit Frequency Analyzer</h3>
+ <p class="muted">Distribution across the sample sequence</p>
+ <div class="grid" id="frequencies"></div>
+</div>
+
+<div class="card">
+ <h3>Digit Analysis Modules</h3>
+ <div class="tabs">
+  <button class="active" onclick="choose('matches',this)">Matches</button>
+  <button onclick="choose('differs',this)">Differs</button>
+  <button onclick="choose('over',this)">Over</button>
+  <button onclick="choose('under',this)">Under</button>
+  <button onclick="choose('even',this)">Even</button>
+  <button onclick="choose('odd',this)">Odd</button>
+ </div>
+
+ <div id="settings" style="margin-top:16px">
+  <div class="muted">SELECT DIGIT</div>
+  <select id="digit" onchange="analyse()">
+   <option value="0">Digit 0</option>
+   <option value="1">Digit 1</option>
+   <option value="2">Digit 2</option>
+   <option value="3">Digit 3</option>
+   <option value="4">Digit 4</option>
+   <option value="5">Digit 5</option>
+   <option value="6">Digit 6</option>
+   <option value="7" selected>Digit 7</option>
+   <option value="8">Digit 8</option>
+   <option value="9">Digit 9</option>
+  </select>
+ </div>
+
+ <div class="result" id="output">
+  <div class="muted">STATISTICAL RESULT</div>
+  <h3>Select an analysis module</h3>
+ </div>
+ <button class="full" onclick="analyse()">ANALYSE SAMPLE</button>
+</div>
+
+<div class="card">
+ <h3>Last Digit History</h3>
+ <p class="muted">Most recent sample digits</p>
+ <div class="history" id="history"></div>
+</div>
+
+<div class="card">
+ <h3>LEX AI Statistical Scanner</h3>
  <div class="scanner">
   <div class="orb">LEX AI</div>
-  <h3>Market Intelligence Engine</h3>
-  <p class="muted">Select a market and run a demonstration analysis.</p>
-  <button class="primary" onclick="scan()">RUN AI ANALYSIS</button>
-  <div class="result" id="analysis">
-   <div class="muted">SCANNER RESULT</div>
-   <p>Waiting for analysis...</p>
-  </div>
+  <p class="muted">Statistical distribution and frequency analysis</p>
+  <button class="full" onclick="scan()">RUN STATISTICAL SCAN</button>
+ </div>
+ <div class="result" id="scanresult">
+  <div class="muted">SCANNER REPORT</div>
+  Waiting for analysis...
  </div>
 </div>
 
 <div class="card">
- <h3>Technical Indicators</h3>
- <div class="row"><span>RSI (14)</span><b id="rsi">--</b></div>
- <div class="row"><span>MACD</span><b id="macd">--</b></div>
- <div class="row"><span>Moving Average</span><b id="ma">--</b></div>
- <div class="row"><span>Market Trend</span><b id="trend">Waiting</b></div>
- <p class="muted">Demo indicators, not calculated from live market data.</p>
-</div>
-
-<div class="card">
- <h3>Market Watchlist</h3>
- <div class="row"><span class="symbol">BTC/USD</span><span class="green">Crypto</span></div>
- <div class="row"><span class="symbol">ETH/USD</span><span class="green">Crypto</span></div>
- <div class="row"><span class="symbol">EUR/USD</span><span class="purple">Forex</span></div>
- <div class="row"><span class="symbol">GBP/USD</span><span class="purple">Forex</span></div>
- <div class="row"><span class="symbol">GOLD</span><span class="green">Commodity</span></div>
-</div>
-
-<div class="card">
- <h3>Platform Information</h3>
- <div class="row"><span>Platform</span><b>LEXTRADES AI</b></div>
- <div class="row"><span>Scanner</span><b class="green">Demo mode</b></div>
- <div class="row"><span>Real trading</span><b>Not connected</b></div>
- <div class="row"><span>Market feed</span><b>Not connected</b></div>
+ <h3>Important Information</h3>
+ <p class="muted">
+ This version uses illustrative sample data. Results are not
+ live Deriv market readings, AI predictions or trading signals.
+ Historical digit frequency does not establish the probability
+ of the next digit.
+ </p>
 </div>
 
 <nav>
- <a href="#top">⌂ Home</a>
- <a href="#markets">◈ Markets</a>
- <a href="#analysis">◎ Scanner</a>
- <a href="#top">⚙ Settings</a>
+ <a href="#">⌂ Home</a>
+ <a href="#market">◈ Markets</a>
+ <a href="#settings">◎ Scanner</a>
+ <a href="#scanresult">⚙ Analysis</a>
 </nav>
 
-<footer>
- LEXTRADES AI © 2026<br><br>
- Intelligent Market Analysis Platform<br>
- Educational demonstration — no live trading
-</footer>
-
 <script>
-function drawChart(){
- const name=document.getElementById("market").value;
- const svg=document.getElementById("chart");
- const bases={"BTC/USD":67450,"ETH/USD":3500,
- "EUR/USD":1.08,"GBP/USD":1.27,"GOLD":2650};
- const base=bases[name];
- document.getElementById("price").textContent=
- "$"+base.toLocaleString("en-US",{minimumFractionDigits:2,
- maximumFractionDigits:2});
- let data=[],p=base;
- for(let i=0;i<35;i++){
-  let o=p;
-  let c=o+(Math.random()-.48)*base*.009;
-  let hi=Math.max(o,c)+Math.random()*base*.003;
-  let lo=Math.min(o,c)-Math.random()*base*.003;
-  data.push({o,c,hi,lo});p=c;
- }
- let min=Math.min(...data.map(d=>d.lo));
- let max=Math.max(...data.map(d=>d.hi));
- const y=v=>190-(v-min)/(max-min)*165;
- let out="";
- for(let j=0;j<5;j++){
-  let gy=15+j*42;
-  out+=`<line x1="0" y1="${gy}" x2="340" y2="${gy}" stroke="#26344a"/>`;
- }
- data.forEach((d,i)=>{
-  let x=5+i*9.5;
-  let up=d.c>=d.o;
-  let color=up?"#37e5a0":"#ff657c";
-  out+=`<line x1="${x+3}" y1="${y(d.hi)}" x2="${x+3}" y2="${y(d.lo)}" stroke="${color}"/>`;
-  out+=`<rect x="${x}" y="${Math.min(y(d.o),y(d.c))}" width="6" height="${Math.max(2,Math.abs(y(d.o)-y(d.c)))}" fill="${color}"/>`;
- });
- svg.innerHTML=out;
+const sample=[
+ 7,2,5,1,9,4,3,8,0,6,7,3,2,9,1,5,8,4,6,0,
+ 2,7,4,9,3,1,6,8,5,0,7,2,3,5,9,4,1,8,6,0,
+ 3,7,2,4,8,1,9,5,6,0,4,2,7,1,8,3,9,6,5,0,
+ 7,4,2,8,1,5,3,9,6,0,2,7,4,1,8,5,3,6,9,0,
+ 1,4,7,2,8,5,9,3,6,0,7,1,4,2,8,5,9,3,6,7
+];
+let mode="matches";
+
+function counts(){
+ let c=Array(10).fill(0);
+ sample.forEach(n=>c[n]++);
+ return c;
 }
-function setTF(btn){
- document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
- btn.classList.add("active");
- drawChart();
+function draw(){
+ let c=counts();
+ document.getElementById("latest").textContent=sample[99];
+ document.getElementById("count").textContent=sample.length+" ticks";
+ document.getElementById("frequencies").innerHTML=c.map((n,i)=>
+ '<div class="digit"><strong>'+i+'</strong><small>'+n+
+ '%? </small><div class="bar"><div class="fill" style="width:'+
+ (n/sample.length*100)+'%"></div></div><small>'+
+ (n/sample.length*100).toFixed(1)+'%</small></div>'
+ ).join("");
+ document.getElementById("history").innerHTML=
+ sample.slice(-30).reverse().map(n=>'<span>'+n+'</span>').join("");
+}
+function choose(m,b){
+ mode=m;
+ document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));
+ b.classList.add("active");
+ let html='<div class="muted">SELECT DIGIT</div>';
+ if(m==="over"||m==="under"){
+ html='<div class="muted">SELECT THRESHOLD (0–9)</div><select id="digit" onchange="analyse()">';
+ for(let i=0;i<=9;i++)html+='<option value="'+i+'">'+i+'</option>';
+ html+='</select>';
+ }else if(m==="even"||m==="odd"){
+ html='<p class="muted">No digit selection required.</p>';
+ }else{
+ html='<div class="muted">SELECT DIGIT</div><select id="digit" onchange="analyse()">';
+ for(let i=0;i<=9;i++)html+='<option value="'+i+'">'+i+'</option>';
+ html+='</select>';
+ }
+ document.getElementById("settings").innerHTML=html;
+ analyse();
+}
+function analyse(){
+ let d=Number(document.getElementById("digit")?.value||7);
+ let total=sample.length, hits=0, label="";
+ if(mode==="matches"){
+ hits=sample.filter(x=>x===d).length;label="Matches digit "+d;
+ }else if(mode==="differs"){
+ hits=sample.filter(x=>x!==d).length;label="Differs from digit "+d;
+ }else if(mode==="over"){
+ hits=sample.filter(x=>x>d).length;label="Over "+d;
+ }else if(mode==="under"){
+ hits=sample.filter(x=>x<d).length;label="Under "+d;
+ }else if(mode==="even"){
+ hits=sample.filter(x=>x%2===0).length;label="Even digits";
+ }else{
+ hits=sample.filter(x=>x%2!==0).length;label="Odd digits";
+ }
+ let pct=(hits/total*100).toFixed(2);
+ document.getElementById("output").innerHTML=
+ '<div class="muted">SAMPLE STATISTICS</div>'+
+ '<h3 class="green">'+label+'</h3>'+
+ '<div class="big">'+pct+'%</div>'+
+ '<p>'+hits+' occurrences out of '+total+' sample digits</p>'+
+ '<p class="muted">This is a historical sample frequency, not a forecast.</p>';
 }
 function scan(){
- let direction=Math.random()>.5?"UPWARD":"DOWNWARD";
- let rsi=(30+Math.random()*40).toFixed(1);
- document.getElementById("rsi").textContent=rsi;
- document.getElementById("macd").textContent="Demo value";
- document.getElementById("ma").textContent="Demo value";
- document.getElementById("trend").textContent=direction;
- document.getElementById("trend").className=direction==="UPWARD"?"green":"red";
- document.getElementById("analysis").innerHTML=
- '<div class="muted">SIMULATED SCANNER OUTPUT</div>'+
- '<h3 class="'+(direction==="UPWARD"?"green":"red")+'">'+direction+'</h3>'+
- '<p>Selected market: '+document.getElementById("market").value+'</p>'+
- '<p class="muted">This is randomly generated demonstration output, not a real AI prediction or trading signal.</p>';
+ let c=counts();
+ let highest=Math.max(...c),lowest=Math.min(...c);
+ let hi=c.indexOf(highest),lo=c.indexOf(lowest);
+ document.getElementById("scanresult").innerHTML=
+ '<div class="muted">SAMPLE ANALYSIS REPORT</div>'+
+ '<p>Most frequent sample digit: <b class="green">'+hi+
+ '</b> ('+highest+' occurrences)</p>'+
+ '<p>Least frequent sample digit: <b class="purple">'+lo+
+ '</b> ('+lowest+' occurrences)</p>'+
+ '<p>Even digits: '+sample.filter(x=>x%2===0).length+
+ ' occurrences</p>'+
+ '<p>Odd digits: '+sample.filter(x=>x%2!==0).length+
+ ' occurrences</p>'+
+ '<p class="muted">Descriptive statistics only. No prediction of the next digit.</p>';
 }
-drawChart();
+document.getElementById("market").addEventListener("change",()=>{
+ document.getElementById("scanresult").textContent=
+ "Market selection changed. Sample data remains illustrative.";
+});
+draw();
+analyse();
 </script>
 </body>
 </html>
