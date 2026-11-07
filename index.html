@@ -3,49 +3,58 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEXTRADES AI</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LEXTRADES AI | Market Intelligence</title>
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;background:#080d18;color:#fff;
- font-family:Arial,sans-serif;padding:18px;
-}
+body{margin:0;background:#080d18;color:#edf3ff;
+font-family:Arial,sans-serif;padding:15px}
 header{display:flex;justify-content:space-between;
- align-items:center;padding:12px 0 25px}
-.logo{font-size:23px;font-weight:bold;color:#36e6a0}
-.logo span{color:#fff}
-.status{color:#36e6a0;font-size:12px}
-h2{font-size:22px;margin-bottom:5px}
-.sub{color:#8491a8;font-size:13px}
-.card{
- background:#111a2a;border:1px solid #202e43;
- border-radius:13px;padding:18px;margin:15px 0;
-}
-.label{color:#91a0b7;font-size:13px}
-.price{font-size:30px;font-weight:bold;margin:12px 0}
-.green{color:#36e6a0}
-.purple{color:#a58bff}
-button{
- background:#36e6a0;color:#07130f;border:0;
- padding:12px 18px;border-radius:8px;
- font-weight:bold;width:100%;margin-top:12px
-}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.small{font-size:19px;font-weight:bold;margin-top:12px}
+align-items:center;padding:12px 0 22px}
+.logo{font-size:21px;font-weight:900;color:#37e5a0}
+.logo span{color:white}
+.status{font-size:10px;color:#37e5a0}
+h2{font-size:22px;margin:12px 0 5px}
+h3{font-size:16px;margin:0 0 16px}
+.muted{color:#8997ae;font-size:12px}
+.card{background:#111a2a;border:1px solid #26334a;
+border-radius:13px;padding:16px;margin:13px 0}
+.balance{font-size:27px;font-weight:bold;margin:10px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.metric{font-size:18px;font-weight:bold;margin-top:10px}
+.green{color:#37e5a0}
+.red{color:#ff657c}
+.purple{color:#a78bfa}
+select{background:#1b2940;color:white;
+border:1px solid #34445e;padding:11px;
+border-radius:8px;width:100%;margin:8px 0}
+button{background:#26364e;color:white;border:0;
+padding:10px 13px;border-radius:7px;font-weight:bold}
+button.active{background:#37e5a0;color:#07140f}
+.primary{background:#37e5a0;color:#07140f;
+width:100%;padding:14px;margin-top:12px}
+.tabs{display:flex;gap:7px;overflow-x:auto;margin:12px 0}
+.tabs button{white-space:nowrap;font-size:11px}
+.chart{height:210px;width:100%;display:block}
 .row{display:flex;justify-content:space-between;
- padding:13px 0;border-bottom:1px solid #263044}
-.scanner{text-align:center;padding:25px 15px}
-.circle{
- width:95px;height:95px;border-radius:50%;
- border:3px solid #36e6a0;margin:auto;
- display:flex;align-items:center;justify-content:center;
- color:#36e6a0;font-weight:bold;font-size:17px
-}
-nav{display:flex;justify-content:space-around;
- border-top:1px solid #263044;padding:20px 0;
- color:#91a0b7;font-size:12px}
-footer{text-align:center;color:#68778f;font-size:11px}
+align-items:center;padding:13px 0;
+border-bottom:1px solid #283449;font-size:13px}
+.symbol{font-weight:bold}
+.scanner{text-align:center;padding:15px}
+.orb{height:85px;width:85px;border-radius:50%;
+border:2px solid #37e5a0;display:flex;
+align-items:center;justify-content:center;
+margin:12px auto;color:#37e5a0;font-weight:bold;
+box-shadow:0 0 20px #37e5a033}
+.result{background:#19283b;border-radius:9px;
+padding:13px;margin-top:12px;text-align:left}
+nav{position:sticky;bottom:0;background:#080d18;
+border-top:1px solid #26334a;display:flex;
+justify-content:space-around;padding:15px 0;
+margin:15px -15px 0}
+nav a{color:#a3afc3;text-decoration:none;font-size:11px}
+footer{text-align:center;color:#73819a;font-size:10px;
+padding:18px}
 </style>
 </head>
 <body>
@@ -55,77 +64,157 @@ footer{text-align:center;color:#68778f;font-size:11px}
  <div class="status">● SYSTEM ONLINE</div>
 </header>
 
-<h2>Market Dashboard</h2>
-<p class="sub">Your intelligent market analysis workspace</p>
-
-<div class="card">
- <div class="label">AI MARKET SCANNER</div>
- <div class="scanner">
-  <div class="circle">LEX AI</div>
-  <h3>Scanner Ready</h3>
-  <p class="sub">Waiting for market data connection</p>
-  <button onclick="scan()">START ANALYSIS</button>
-  <p id="result" class="green">System initialized</p>
- </div>
-</div>
+<h2>Trading Dashboard</h2>
+<p class="muted">AI-powered market intelligence workspace</p>
 
 <div class="grid">
  <div class="card">
-  <div class="label">MARKET STATUS</div>
-  <div class="small green">ONLINE</div>
+  <div class="muted">DEMO PORTFOLIO</div>
+  <div class="balance">$1,000.00</div>
+  <div class="muted">Virtual balance only</div>
  </div>
  <div class="card">
-  <div class="label">SCANNER MODE</div>
-  <div class="small purple">AI ANALYSIS</div>
+  <div class="muted">MARKET STATUS</div>
+  <div class="metric green">READY</div>
+  <div class="muted">Demo environment</div>
  </div>
+</div>
+
+<div class="card" id="markets">
+ <h3>Market Overview</h3>
+ <select id="market" onchange="drawChart()">
+  <option>BTC/USD</option>
+  <option>ETH/USD</option>
+  <option>EUR/USD</option>
+  <option>GBP/USD</option>
+  <option>GOLD</option>
+ </select>
+ <div class="muted">DEMO PRICE</div>
+ <div class="balance" id="price">$67,450.00</div>
+ <div class="muted">Illustrative price — not a live quote</div>
+
+ <div class="tabs">
+  <button class="active" onclick="setTF(this)">1M</button>
+  <button onclick="setTF(this)">5M</button>
+  <button onclick="setTF(this)">15M</button>
+  <button onclick="setTF(this)">1H</button>
+  <button onclick="setTF(this)">4H</button>
+ </div>
+
+ <svg id="chart" class="chart"
+ viewBox="0 0 340 210" preserveAspectRatio="none">
+ </svg>
+ <div class="muted">Illustrative chart data • Simulation only</div>
+</div>
+
+<div class="card">
+ <h3>LEX AI Central Scanner</h3>
+ <div class="scanner">
+  <div class="orb">LEX AI</div>
+  <h3>Market Intelligence Engine</h3>
+  <p class="muted">Select a market and run a demonstration analysis.</p>
+  <button class="primary" onclick="scan()">RUN AI ANALYSIS</button>
+  <div class="result" id="analysis">
+   <div class="muted">SCANNER RESULT</div>
+   <p>Waiting for analysis...</p>
+  </div>
+ </div>
+</div>
+
+<div class="card">
+ <h3>Technical Indicators</h3>
+ <div class="row"><span>RSI (14)</span><b id="rsi">--</b></div>
+ <div class="row"><span>MACD</span><b id="macd">--</b></div>
+ <div class="row"><span>Moving Average</span><b id="ma">--</b></div>
+ <div class="row"><span>Market Trend</span><b id="trend">Waiting</b></div>
+ <p class="muted">Demo indicators, not calculated from live market data.</p>
 </div>
 
 <div class="card">
  <h3>Market Watchlist</h3>
- <div class="row">
-  <span>BTC / USD</span>
-  <span class="green">Demo</span>
- </div>
- <div class="row">
-  <span>ETH / USD</span>
-  <span class="green">Demo</span>
- </div>
- <div class="row">
-  <span>EUR / USD</span>
-  <span class="green">Demo</span>
- </div>
- <div class="row">
-  <span>GOLD</span>
-  <span class="green">Demo</span>
- </div>
+ <div class="row"><span class="symbol">BTC/USD</span><span class="green">Crypto</span></div>
+ <div class="row"><span class="symbol">ETH/USD</span><span class="green">Crypto</span></div>
+ <div class="row"><span class="symbol">EUR/USD</span><span class="purple">Forex</span></div>
+ <div class="row"><span class="symbol">GBP/USD</span><span class="purple">Forex</span></div>
+ <div class="row"><span class="symbol">GOLD</span><span class="green">Commodity</span></div>
 </div>
 
 <div class="card">
- <h3>Analysis Center</h3>
- <p class="sub">Market indicators and technical analysis will appear here.</p>
- <p class="purple">RSI: Awaiting data</p>
- <p class="purple">MACD: Awaiting data</p>
- <p class="purple">Trend: Awaiting data</p>
+ <h3>Platform Information</h3>
+ <div class="row"><span>Platform</span><b>LEXTRADES AI</b></div>
+ <div class="row"><span>Scanner</span><b class="green">Demo mode</b></div>
+ <div class="row"><span>Real trading</span><b>Not connected</b></div>
+ <div class="row"><span>Market feed</span><b>Not connected</b></div>
 </div>
 
 <nav>
- <span>⌂ Home</span>
- <span>◈ Markets</span>
- <span>◎ Scanner</span>
- <span>⚙ Settings</span>
+ <a href="#top">⌂ Home</a>
+ <a href="#markets">◈ Markets</a>
+ <a href="#analysis">◎ Scanner</a>
+ <a href="#top">⚙ Settings</a>
 </nav>
 
 <footer>
- LEXTRADES AI © 2026<br>
- Educational market analysis prototype
+ LEXTRADES AI © 2026<br><br>
+ Intelligent Market Analysis Platform<br>
+ Educational demonstration — no live trading
 </footer>
 
 <script>
-function scan(){
- document.getElementById("result").innerText =
- "Scanner ready. Connect a market data source to begin analysis.";
+function drawChart(){
+ const name=document.getElementById("market").value;
+ const svg=document.getElementById("chart");
+ const bases={"BTC/USD":67450,"ETH/USD":3500,
+ "EUR/USD":1.08,"GBP/USD":1.27,"GOLD":2650};
+ const base=bases[name];
+ document.getElementById("price").textContent=
+ "$"+base.toLocaleString("en-US",{minimumFractionDigits:2,
+ maximumFractionDigits:2});
+ let data=[],p=base;
+ for(let i=0;i<35;i++){
+  let o=p;
+  let c=o+(Math.random()-.48)*base*.009;
+  let hi=Math.max(o,c)+Math.random()*base*.003;
+  let lo=Math.min(o,c)-Math.random()*base*.003;
+  data.push({o,c,hi,lo});p=c;
+ }
+ let min=Math.min(...data.map(d=>d.lo));
+ let max=Math.max(...data.map(d=>d.hi));
+ const y=v=>190-(v-min)/(max-min)*165;
+ let out="";
+ for(let j=0;j<5;j++){
+  let gy=15+j*42;
+  out+=`<line x1="0" y1="${gy}" x2="340" y2="${gy}" stroke="#26344a"/>`;
+ }
+ data.forEach((d,i)=>{
+  let x=5+i*9.5;
+  let up=d.c>=d.o;
+  let color=up?"#37e5a0":"#ff657c";
+  out+=`<line x1="${x+3}" y1="${y(d.hi)}" x2="${x+3}" y2="${y(d.lo)}" stroke="${color}"/>`;
+  out+=`<rect x="${x}" y="${Math.min(y(d.o),y(d.c))}" width="6" height="${Math.max(2,Math.abs(y(d.o)-y(d.c)))}" fill="${color}"/>`;
+ });
+ svg.innerHTML=out;
 }
+function setTF(btn){
+ document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
+ btn.classList.add("active");
+ drawChart();
+}
+function scan(){
+ let direction=Math.random()>.5?"UPWARD":"DOWNWARD";
+ let rsi=(30+Math.random()*40).toFixed(1);
+ document.getElementById("rsi").textContent=rsi;
+ document.getElementById("macd").textContent="Demo value";
+ document.getElementById("ma").textContent="Demo value";
+ document.getElementById("trend").textContent=direction;
+ document.getElementById("trend").className=direction==="UPWARD"?"green":"red";
+ document.getElementById("analysis").innerHTML=
+ '<div class="muted">SIMULATED SCANNER OUTPUT</div>'+
+ '<h3 class="'+(direction==="UPWARD"?"green":"red")+'">'+direction+'</h3>'+
+ '<p>Selected market: '+document.getElementById("market").value+'</p>'+
+ '<p class="muted">This is randomly generated demonstration output, not a real AI prediction or trading signal.</p>';
+}
+drawChart();
 </script>
-
 </body>
 </html>
