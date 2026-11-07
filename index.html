@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEXTRADES AI</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080d18;color:#fff;
+ font-family:Arial,sans-serif;padding:18px;
+}
+header{display:flex;justify-content:space-between;
+ align-items:center;padding:12px 0 25px}
+.logo{font-size:23px;font-weight:bold;color:#36e6a0}
+.logo span{color:#fff}
+.status{color:#36e6a0;font-size:12px}
+h2{font-size:22px;margin-bottom:5px}
+.sub{color:#8491a8;font-size:13px}
+.card{
+ background:#111a2a;border:1px solid #202e43;
+ border-radius:13px;padding:18px;margin:15px 0;
+}
+.label{color:#91a0b7;font-size:13px}
+.price{font-size:30px;font-weight:bold;margin:12px 0}
+.green{color:#36e6a0}
+.purple{color:#a58bff}
+button{
+ background:#36e6a0;color:#07130f;border:0;
+ padding:12px 18px;border-radius:8px;
+ font-weight:bold;width:100%;margin-top:12px
+}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.small{font-size:19px;font-weight:bold;margin-top:12px}
+.row{display:flex;justify-content:space-between;
+ padding:13px 0;border-bottom:1px solid #263044}
+.scanner{text-align:center;padding:25px 15px}
+.circle{
+ width:95px;height:95px;border-radius:50%;
+ border:3px solid #36e6a0;margin:auto;
+ display:flex;align-items:center;justify-content:center;
+ color:#36e6a0;font-weight:bold;font-size:17px
+}
+nav{display:flex;justify-content:space-around;
+ border-top:1px solid #263044;padding:20px 0;
+ color:#91a0b7;font-size:12px}
+footer{text-align:center;color:#68778f;font-size:11px}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">LEX<span>TRADES</span> AI</div>
+ <div class="status">● SYSTEM ONLINE</div>
+</header>
+
+<h2>Market Dashboard</h2>
+<p class="sub">Your intelligent market analysis workspace</p>
+
+<div class="card">
+ <div class="label">AI MARKET SCANNER</div>
+ <div class="scanner">
+  <div class="circle">LEX AI</div>
+  <h3>Scanner Ready</h3>
+  <p class="sub">Waiting for market data connection</p>
+  <button onclick="scan()">START ANALYSIS</button>
+  <p id="result" class="green">System initialized</p>
+ </div>
+</div>
+
+<div class="grid">
+ <div class="card">
+  <div class="label">MARKET STATUS</div>
+  <div class="small green">ONLINE</div>
+ </div>
+ <div class="card">
+  <div class="label">SCANNER MODE</div>
+  <div class="small purple">AI ANALYSIS</div>
+ </div>
+</div>
+
+<div class="card">
+ <h3>Market Watchlist</h3>
+ <div class="row">
+  <span>BTC / USD</span>
+  <span class="green">Demo</span>
+ </div>
+ <div class="row">
+  <span>ETH / USD</span>
+  <span class="green">Demo</span>
+ </div>
+ <div class="row">
+  <span>EUR / USD</span>
+  <span class="green">Demo</span>
+ </div>
+ <div class="row">
+  <span>GOLD</span>
+  <span class="green">Demo</span>
+ </div>
+</div>
+
+<div class="card">
+ <h3>Analysis Center</h3>
+ <p class="sub">Market indicators and technical analysis will appear here.</p>
+ <p class="purple">RSI: Awaiting data</p>
+ <p class="purple">MACD: Awaiting data</p>
+ <p class="purple">Trend: Awaiting data</p>
+</div>
+
+<nav>
+ <span>⌂ Home</span>
+ <span>◈ Markets</span>
+ <span>◎ Scanner</span>
+ <span>⚙ Settings</span>
+</nav>
+
+<footer>
+ LEXTRADES AI © 2026<br>
+ Educational market analysis prototype
+</footer>
+
+<script>
+function scan(){
+ document.getElementById("result").innerText =
+ "Scanner ready. Connect a market data source to begin analysis.";
+}
+</script>
+
+</body>
+</html>
