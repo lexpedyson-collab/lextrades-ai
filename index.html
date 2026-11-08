@@ -246,7 +246,21 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
     <p class="muted">Waiting for analysis...</p>
   </div>
 </div>
- 
+ <div class="result">
+  <h3>🔥 Digit Frequency Heatmap</h3>
+
+  <p class="muted">
+    Visualise the frequency of digits 0–9.
+  </p>
+
+  <button onclick="drawHeatmap()">
+    GENERATE HEATMAP
+  </button>
+
+  <div id="heatmap-result">
+    <p class="muted">Waiting for analysis...</p>
+  </div>
+ </div>
  <div class="result" id="scanresult">
   <div class="muted">SCANNER REPORT</div>
   
@@ -586,6 +600,47 @@ function compareSamples(){
     bar("Under 5", under) +
     "<p>Sample size: " + data.length + "</p>" +
     "<p class='muted'>Historical sample statistics only. Not a prediction.</p>";
+ }
+ function drawHeatmap(){
+  const data = activeSample();
+  const c = counts();
+
+  const result = document.getElementById("heatmap-result");
+
+  if(!result || data.length === 0) return;
+
+  const maxCount = Math.max(...c);
+
+  result.innerHTML = `
+    <div style="display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:10px;
+      margin-top:15px;">
+      ${c.map((count,digit)=>{
+        const intensity = maxCount === 0 ? 0 :
+          count / maxCount;
+
+        return `
+          <div style="
+            background:rgba(0,212,255,${0.12 + intensity * 0.65});
+            border:1px solid #00d4ff;
+            border-radius:10px;
+            padding:15px 5px;
+            text-align:center;">
+            <h2>${digit}</h2>
+            <b>${count}</b>
+            <p style="font-size:11px;">
+              ${(count/data.length*100).toFixed(1)}%
+            </p>
+          </div>
+        `;
+      }).join("")}
+    </div>
+    <p class="muted">
+      Frequency intensity is based on historical sample counts.
+      It does not predict future digits.
+    </p>
+  `;
  }
  function scan(){
   let data = activeSample();
