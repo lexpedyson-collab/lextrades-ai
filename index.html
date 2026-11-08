@@ -413,9 +413,13 @@ function changeSampleSize(){
     document.getElementById("sample-size").value
   );
 
-draw();
-analyse();
-updateOverview();
+  draw();
+  analyse();
+  updateOverview();
+  drawDigitChart();
+  drawStatsDashboard();
+  drawCategoryChart();
+  trendScan();
 }
  
 function activeSample(){
