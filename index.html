@@ -319,28 +319,48 @@ function choose(m,b){
  analyse();
 }
 function analyse(){
- let d=Number(document.getElementById("digit")?.value||7);
- let total=sample.length, hits=0, label="";
- if(mode==="matches"){
- hits=sample.filter(x=>x===d).length;label="Matches digit "+d;
- }else if(mode==="differs"){
- hits=sample.filter(x=>x!==d).length;label="Differs from digit "+d;
- }else if(mode==="over"){
- hits=sample.filter(x=>x>d).length;label="Over "+d;
- }else if(mode==="under"){
- hits=sample.filter(x=>x<d).length;label="Under "+d;
- }else if(mode==="even"){
- hits=sample.filter(x=>x%2===0).length;label="Even digits";
- }else{
- hits=sample.filter(x=>x%2!==0).length;label="Odd digits";
- }
- let pct=(hits/total*100).toFixed(2);
- document.getElementById("output").innerHTML=
- '<div class="muted">SAMPLE STATISTICS</div>'+
- '<h3 class="green">'+label+'</h3>'+
- '<div class="big">'+pct+'%</div>'+
- '<p>'+hits+' occurrences out of '+total+' sample digits</p>'+
- '<p class="muted">This is a historical sample frequency, not a forecast.</p>';
+
+  let data = activeSample();
+
+  let d = Number(document.getElementById("digit")?.value || 7);
+
+  let total = data.length;
+  let hits = 0;
+  let label = "";
+
+  if(mode==="matches"){
+    hits=data.filter(x=>x===d).length;
+    label="Matches digit "+d;
+
+  }else if(mode==="differs"){
+    hits=data.filter(x=>x!==d).length;
+    label="Differs from digit "+d;
+
+  }else if(mode==="over"){
+    hits=data.filter(x=>x>d).length;
+    label="Over "+d;
+
+  }else if(mode==="under"){
+    hits=data.filter(x=>x<d).length;
+    label="Under "+d;
+
+  }else if(mode==="even"){
+    hits=data.filter(x=>x%2===0).length;
+    label="Even digits";
+
+  }else{
+    hits=data.filter(x=>x%2!==0).length;
+    label="Odd digits";
+  }
+
+  let pct=(hits/total*100).toFixed(2);
+
+  document.getElementById("output").innerHTML=
+    '<div class="muted">SAMPLE STATISTICS</div>'+
+    '<h3 class="green">'+label+'</h3>'+
+    '<div class="big">'+pct+'%</div>'+
+    '<p>'+hits+' occurrences out of '+total+' sample digits</p>'+
+    '<p class="muted">Historical sample frequency, not a forecast.</p>';
 }
 function scan(){
  let c=counts();
