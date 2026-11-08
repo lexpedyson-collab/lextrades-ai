@@ -948,10 +948,7 @@ function generateSample(){
 
   sample.splice(0, sample.length, ...freshData);
 
-  sampleSize = 100;
-
-  const selector = document.getElementById("sample-size");
-  if(selector) selector.value = "100";
+// Keep the user's selected sample size
 
   refreshSampleViews();
 
