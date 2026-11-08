@@ -243,10 +243,18 @@ const sample=[
  1,4,7,2,8,5,9,3,6,0,7,1,4,2,8,5,9,3,6,7
 ];
 let mode="matches";
-
-
+ 
 let sampleSize = 100;
 
+function changeSampleSize(){
+  sampleSize = Number(
+    document.getElementById("sample-size").value
+  );
+
+  draw();
+  analyse();
+}
+ 
 function activeSample(){
   return sample.slice(-Math.min(sampleSize, sample.length));
 }
