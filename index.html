@@ -235,32 +235,53 @@ const sample=[
 ];
 let mode="matches";
 
+
+let sampleSize = 100;
+
+function activeSample(){
+  return sample.slice(-Math.min(sampleSize, sample.length));
+}
+
 function counts(){
- let c=Array(10).fill(0);
- sample.forEach(n=>c[n]++);
- return c;
+  let data = activeSample();
+  let c = Array(10).fill(0);
+
+  data.forEach(n => c[n]++);
+
+  return c;
 }
+
 function draw(){
- let c=counts();
+  let data = activeSample();
+  let c = counts();
 
- document.getElementById("latest").textContent=sample[99];
- document.getElementById("count").textContent=sample.length+" ticks";
+  document.getElementById("latest").textContent =
+    data[data.length - 1];
 
- document.getElementById("frequencies").innerHTML=
- c.map((n,i)=>
- '<div class="digit">'+
- '<strong>'+i+'</strong>'+
- '<small>'+n+' ticks</small>'+
- '<div class="bar"><div class="fill" style="width:'+
- (n/sample.length*100)+'%"></div></div>'+
- '<small>'+(n/sample.length*100).toFixed(1)+'%</small>'+
- '</div>'
- ).join("");
+  document.getElementById("count").textContent =
+    data.length + " ticks";
 
- document.getElementById("history").innerHTML=
- sample.slice(-30).reverse()
- .map(n=>'<span>'+n+'</span>').join("");
+  document.getElementById("frequencies").innerHTML =
+    c.map((n,i) =>
+      '<div class="digit">' +
+      '<strong>' + i + '</strong>' +
+      '<small>' + n + ' ticks</small>' +
+      '<div class="bar"><div class="fill" style="width:' +
+      (n/data.length*100) + '%"></div></div>' +
+      '<small>' + (n/data.length*100).toFixed(1) + '%</small>' +
+      '</div>'
+    ).join("");
+
+  document.getElementById("history").innerHTML =
+    data.slice(-30).reverse()
+    .map(n => '<span>' + n + '</span>').join("");
 }
+
+function setLexSampleSize(size){
+  sampleSize = Number(size);
+  draw();
+}
+ 
 function choose(m,b){
  mode=m;
  document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));
