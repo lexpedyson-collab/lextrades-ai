@@ -403,13 +403,13 @@ function scan(){
     percent:(n/data.length*100).toFixed(1)
   }));
 
-  let hot = [...ranked]
-    .sort((a,b)=>b.count-a.count)
-    .slice(0,3);
+  let sorted = [...ranked].sort(
+  (a,b)=>b.count-a.count || a.digit-b.digit
+);
 
-  let cold = [...ranked]
-    .sort((a,b)=>a.count-b.count)
-    .slice(0,3);
+let hot = sorted.slice(0,3);
+
+let cold = sorted.slice(-3).reverse();
 
   let even = data.filter(n=>n%2===0).length;
   let odd = data.length-even;
