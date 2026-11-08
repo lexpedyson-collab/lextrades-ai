@@ -162,6 +162,10 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
   <option value="1000" disabled>1,000 Ticks (Coming soon)</option>
 </select>
  <div class="grid" id="frequencies"></div>
+ <div class="result" id="rankings">
+  <h3>Hot & Cold Digit Intelligence</h3>
+  <p class="muted">Waiting for analysis...</p>
+ </div>
 </div>
 
 <div class="card">
@@ -288,7 +292,33 @@ function draw(){
       '<small>' + (n/data.length*100).toFixed(1) + '%</small>' +
       '</div>'
     ).join("");
+    // HOT AND COLD DIGIT RANKINGS
 
+    let ranked = c.map((count,digit)=>({
+      digit,
+      count,
+      percent:(count/data.length*100).toFixed(1)
+    })).sort((a,b)=>b.count-a.count || a.digit-b.digit);
+
+    let hot = ranked.slice(0,3);
+    let cold = ranked.slice(-3).reverse();
+
+    document.getElementById("rankings").innerHTML =
+      '<h3>🔥 Hot Digits</h3>' +
+      hot.map(x=>
+        '<p>Digit '+x.digit+
+        ' — '+x.count+' ticks ('+
+        x.percent+'%)</p>'
+      ).join('') +
+
+      '<h3>❄️ Cold Digits</h3>' +
+      cold.map(x=>
+        '<p>Digit '+x.digit+
+        ' — '+x.count+' ticks ('+
+        x.percent+'%)</p>'
+      ).join('') +
+
+      '<p class="muted">Historical frequency only. Not a prediction.</p>';
   document.getElementById("history").innerHTML =
     data.slice(-30).reverse()
     .map(n => '<span>' + n + '</span>').join("");
