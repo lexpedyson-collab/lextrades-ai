@@ -515,45 +515,6 @@ function compareSamples(){
     return counts;
   }
 
- 
-function drawDistribution(){
-  const data = activeSample();
-  const result = document.getElementById("distribution-result");
-
-  if(!result || data.length === 0){
-    return;
-  }
-
-  const even = data.filter(n => n % 2 === 0).length;
-  const odd = data.length - even;
-  const over = data.filter(n => n > 4).length;
-  const under = data.length - over;
-
-  function bar(label, count){
-    const percent = (count / data.length * 100).toFixed(1);
-
-    return `
-      <div style="margin:15px 0;">
-        <b>${label}: ${count} (${percent}%)</b>
-        <div style="background:#252a35;height:14px;border-radius:10px;overflow:hidden;">
-          <div style="width:${percent}%;height:14px;background:#00d4ff;"></div>
-        </div>
-      </div>
-    `;
-  }
-
-  result.innerHTML =
-    "<h3>Even vs Odd</h3>" +
-    bar("Even digits", even) +
-    bar("Odd digits", odd) +
-    "<h3>Over 4 vs Under 5</h3>" +
-    bar("Over 4", over) +
-    bar("Under 5", under) +
-    "<p>Sample size: " + data.length + "</p>" +
-    "<p class='muted'>Historical sample statistics only. Not a prediction.</p>";
- }
- 
- 
   const count50 = getCounts(small);
   const count100 = getCounts(large);
 
@@ -590,7 +551,42 @@ function drawDistribution(){
 
   document.getElementById("comparison-result").innerHTML = html;
 }
- 
+ function drawDistribution(){
+  const data = activeSample();
+  const result = document.getElementById("distribution-result");
+
+  if(!result || data.length === 0){
+    return;
+  }
+
+  const even = data.filter(n => n % 2 === 0).length;
+  const odd = data.length - even;
+  const over = data.filter(n => n > 4).length;
+  const under = data.length - over;
+
+  function bar(label, count){
+    const percent = (count / data.length * 100).toFixed(1);
+
+    return `
+      <div style="margin:15px 0;">
+        <b>${label}: ${count} (${percent}%)</b>
+        <div style="background:#252a35;height:14px;border-radius:10px;overflow:hidden;">
+          <div style="width:${percent}%;height:14px;background:#00d4ff;"></div>
+        </div>
+      </div>
+    `;
+  }
+
+  result.innerHTML =
+    "<h3>Even vs Odd</h3>" +
+    bar("Even digits", even) +
+    bar("Odd digits", odd) +
+    "<h3>Over 4 vs Under 5</h3>" +
+    bar("Over 4", over) +
+    bar("Under 5", under) +
+    "<p>Sample size: " + data.length + "</p>" +
+    "<p class='muted'>Historical sample statistics only. Not a prediction.</p>";
+ }
  function scan(){
   let data = activeSample();
   let c = counts();
