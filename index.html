@@ -373,6 +373,7 @@ const sample=[
  7,4,2,8,1,5,3,9,6,0,2,7,4,1,8,5,3,6,9,0,
  1,4,7,2,8,5,9,3,6,0,7,1,4,2,8,5,9,3,6,7
 ];
+const originalSample = [...sample];
 let mode="matches";
  
 let sampleSize = 100;
@@ -893,6 +894,46 @@ It is not live market data or a trading signal.
   link.click();
 
   URL.revokeObjectURL(url);
+ }
+ function refreshSampleViews(){
+  draw();
+  analyse();
+  updateOverview();
+  drawDigitChart();
+  drawStatsDashboard();
+  trendScan();
+}
+
+function generateSample(){
+  const freshData = [];
+
+  for(let i = 0; i < 100; i++){
+    freshData.push(Math.floor(Math.random() * 10));
+  }
+
+  sample.splice(0, sample.length, ...freshData);
+
+  sampleSize = 100;
+
+  const selector = document.getElementById("sample-size");
+  if(selector) selector.value = "100";
+
+  refreshSampleViews();
+
+  alert("Fresh educational sample generated!");
+}
+
+function resetSample(){
+  sample.splice(0, sample.length, ...originalSample);
+
+  sampleSize = 100;
+
+  const selector = document.getElementById("sample-size");
+  if(selector) selector.value = "100";
+
+  refreshSampleViews();
+
+  alert("Original sample restored!");
  }
  function scan(){
   let data = activeSample();
