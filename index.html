@@ -214,7 +214,16 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
   <div class="orb">LEX AI</div>
   <p class="muted">Statistical distribution and frequency analysis</p>
   <button class="full" onclick="scan()">RUN STATISTICAL SCAN</button>
+  
+<button onclick="trendScan()">RUN TREND ANALYSIS</button>
+  
  </div>
+ 
+<div class="result" id="trendresult">
+  <h3>📊 Recent Trend Analysis</h3>
+  <p class="muted">Tap the button below to compare recent samples.</p>
+</div>
+ 
  <div class="result" id="scanresult">
   <div class="muted">SCANNER REPORT</div>
   Waiting for analysis...
@@ -393,7 +402,56 @@ function analyse(){
     '<p class="muted">Historical sample frequency, not a forecast.</p>';
 }
 
-function scan(){
+function trendScan(){
+  const data = activeSample();
+
+  const recent = data.slice(-10);
+  const previous = data.slice(-20, -10);
+
+  if(previous.length < 10){
+    document.getElementById("trendresult").innerHTML =
+      "<p>At least 20 sample digits are needed.</p>";
+    return;
+  }
+
+  function stats(arr){
+    const even = arr.filter(n => n % 2 === 0).length;
+    const over = arr.filter(n => n > 4).length;
+
+    return {
+      even,
+      odd: arr.length - even,
+      over,
+      under: arr.length - over
+    };
+  }
+
+  const oldStats = stats(previous);
+  const newStats = stats(recent);
+
+  function compare(label, oldValue, newValue){
+    const change = newValue - oldValue;
+    const direction = change > 0 ? "↑" :
+      change < 0 ? "↓" : "→";
+
+    return "<p><b>" + label + "</b><br>" +
+      "Previous: " + oldValue + "/10 | " +
+      "Recent: " + newValue + "/10<br>" +
+      "Change: " + direction + " " +
+      Math.abs(change) + "</p>";
+  }
+
+  document.getElementById("trendresult").innerHTML =
+    "<h3>📊 Recent Trend Comparison</h3>" +
+    compare("Even digits", oldStats.even, newStats.even) +
+    compare("Odd digits", oldStats.odd, newStats.odd) +
+    compare("Over 4", oldStats.over, newStats.over) +
+    compare("Under 5", oldStats.under, newStats.under) +
+    "<p class='muted'>Compares two historical samples of 10 digits. " +
+    "Descriptive statistics only; not a prediction.</p>";
+                     }
+ 
+ function scan(){
   let data = activeSample();
   let c = counts();
 
