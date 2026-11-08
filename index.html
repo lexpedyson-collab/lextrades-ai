@@ -223,7 +223,17 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
   <h3>📊 Recent Trend Analysis</h3>
   <p class="muted">Tap the button below to compare recent samples.</p>
 </div>
+ 
+<div class="result">
+  <h3>📈 Sample Size Comparison</h3>
+  <p class="muted">Compare digit frequencies across two sample sizes.</p>
 
+  <button onclick="compareSamples()">COMPARE 50 vs 100</button>
+
+  <div id="comparison-result">
+    <p class="muted">Waiting for comparison...</p>
+  </div>
+ 
  <div class="result" id="scanresult">
   <div class="muted">SCANNER REPORT</div>
   
@@ -481,6 +491,53 @@ function drawDigitChart(){
     "<p class='muted'>Compares two historical samples of 10 digits. " +
     "Descriptive statistics only; not a prediction.</p>";
                      }
+
+function compareSamples(){
+  const small = sample.slice(-50);
+  const large = sample.slice(-100);
+
+  function getCounts(data){
+    const counts = Array(10).fill(0);
+    data.forEach(digit => counts[digit]++);
+    return counts;
+  }
+
+  const count50 = getCounts(small);
+  const count100 = getCounts(large);
+
+  let html = `
+    <h3>50 vs 100 Observations</h3>
+    <table style="width:100%;text-align:center;border-collapse:collapse;">
+      <tr>
+        <th>Digit</th>
+        <th>50 (%)</th>
+        <th>100 (%)</th>
+      </tr>
+  `;
+
+  for(let i=0; i<10; i++){
+    const p50 = (count50[i]/50*100).toFixed(1);
+    const p100 = (count100[i]/100*100).toFixed(1);
+
+    html += `
+      <tr>
+        <td>${i}</td>
+        <td>${p50}%</td>
+        <td>${p100}%</td>
+      </tr>
+    `;
+  }
+
+  html += `
+    </table>
+    <p class="muted">
+      Comparison of two historical sample sizes.
+      Differences are descriptive, not predictive.
+    </p>
+  `;
+
+  document.getElementById("comparison-result").innerHTML = html;
+}
  
  function scan(){
   let data = activeSample();
