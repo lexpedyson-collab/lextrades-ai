@@ -224,6 +224,12 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
   <p class="muted">Tap the button below to compare recent samples.</p>
 </div>
  
+<div class="result">
+  <h3>📊 Digit Frequency Chart</h3>
+  <p class="muted">Frequency of each digit in the selected sample.</p>
+  <div id="digit-chart"></div>
+</div>
+ 
  <div class="result" id="scanresult">
   <div class="muted">SCANNER REPORT</div>
   Waiting for analysis...
@@ -403,6 +409,31 @@ function analyse(){
 }
 
 function trendScan(){
+ drawDigitChart();
+function drawDigitChart(){
+  const data = activeSample();
+  const c = counts();
+
+  const chart = document.getElementById("digit-chart");
+
+  chart.innerHTML = c.map((count, digit) => {
+    const percent = (count / data.length * 100).toFixed(1);
+    const width = percent;
+
+    return `
+      <div style="margin:12px 0;">
+        <div style="display:flex;justify-content:space-between;">
+          <b>Digit ${digit}</b>
+          <span>${count} (${percent}%)</span>
+        </div>
+        <div style="height:12px;background:#252a35;border-radius:10px;overflow:hidden;">
+          <div style="height:100%;width:${width}%;background:linear-gradient(90deg,#00d4ff,#8b5cf6);border-radius:10px;transition:width .6s;"></div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+ 
   const data = activeSample();
 
   const recent = data.slice(-10);
