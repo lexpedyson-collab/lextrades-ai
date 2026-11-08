@@ -425,6 +425,15 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
   <div id="trendresult">
     <p class="muted">Waiting for analysis...</p>
   </div>
+ <div class="result">
+  <h3>📈 Previous vs Recent Chart</h3>
+  <p class="muted">
+    Visual comparison of two groups of 10 observations.
+  </p>
+  <div id="trend-chart">
+    <p class="muted">Waiting for chart data...</p>
+  </div>
+ </div>
 </div>
 <div class="result">
   <h3>📈 Sample Size Comparison</h3>
@@ -739,7 +748,47 @@ if(!chart || data.length === 0) return;
     "<p class='muted'>Compares two historical samples of 10 digits. " +
     "Descriptive statistics only; not a prediction.</p>";
                      }
+function drawTrendChart(){
+  const data = activeSample();
+  const result = document.getElementById("trend-chart");
 
+  if(!result || data.length < 20) return;
+
+  const previous = data.slice(-20, -10);
+  const recent = data.slice(-10);
+
+  function getStats(arr){
+    const even = arr.filter(n => n % 2 === 0).length;
+    const over = arr.filter(n => n > 4).length;
+
+    return {
+      "Even": even,
+      "Odd": 10 - even,
+      "Over 4": over,
+      "Under 5": 10 - over
+    };
+  }
+
+  const oldStats = getStats(previous);
+  const newStats = getStats(recent);
+
+  result.innerHTML = Object.keys(oldStats).map(label => `
+    <div style="margin:18px 0;">
+      <b>${label}</b>
+
+      <p>Previous: ${oldStats[label]}/10</p>
+      <div style="height:10px;background:#252a35;border-radius:10px;">
+        <div style="width:${oldStats[label]*10}%;height:10px;background:#8b5cf6;border-radius:10px;"></div>
+      </div>
+
+      <p>Recent: ${newStats[label]}/10</p>
+      <div style="height:10px;background:#252a35;border-radius:10px;">
+        <div style="width:${newStats[label]*10}%;height:10px;background:#00d4ff;border-radius:10px;"></div>
+      </div>
+    </div>
+  `).join("") +
+  `<p class="muted">Purple: Previous sample | Cyan: Recent sample. Descriptive statistics only, not predictions.</p>`;
+ }
 function compareSamples(){
   const small = sample.slice(-50);
   const large = sample.slice(-100);
@@ -1047,6 +1096,7 @@ It is not live market data or a trading signal.
   drawStatsDashboard();
   drawCategoryChart();
   trendScan();
+  drawTrendChart();
   drawDistribution();
   drawHeatmap();
   compareSamples();
