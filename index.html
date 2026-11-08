@@ -238,7 +238,7 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
   <h3>⚖️ Distribution Analytics</h3>
   <p class="muted">Statistical distribution of the selected sample.</p>
 
-  <button onclick="drawDistribution()">
+  <button onclick="try { drawDistribution(); } catch(e) { alert('Error: ' + e.message); }">
   ANALYSE DISTRIBUTION
   </button>
 
