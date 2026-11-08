@@ -515,43 +515,44 @@ function compareSamples(){
     return counts;
   }
 
+ 
 function drawDistribution(){
   const data = activeSample();
+  const result = document.getElementById("distribution-result");
 
- document.getElementById("distribution-result").innerHTML =
-  "<h3>Analysis started successfully!</h3>";
+  if(!result || data.length === 0){
+    return;
+  }
+
   const even = data.filter(n => n % 2 === 0).length;
   const odd = data.length - even;
   const over = data.filter(n => n > 4).length;
   const under = data.length - over;
 
-  function makeBar(label, count){
+  function bar(label, count){
     const percent = (count / data.length * 100).toFixed(1);
 
     return `
       <div style="margin:15px 0;">
-        <div style="display:flex;justify-content:space-between;">
-          <b>${label}</b>
-          <span>${count} (${percent}%)</span>
-        </div>
-        <div style="height:14px;background:#252a35;border-radius:10px;overflow:hidden;">
-          <div style="height:100%;width:${percent}%;background:linear-gradient(90deg,#00d4ff,#8b5cf6);"></div>
+        <b>${label}: ${count} (${percent}%)</b>
+        <div style="background:#252a35;height:14px;border-radius:10px;overflow:hidden;">
+          <div style="width:${percent}%;height:14px;background:#00d4ff;"></div>
         </div>
       </div>
     `;
   }
 
-  document.getElementById("distribution-result").innerHTML =
+  result.innerHTML =
     "<h3>Even vs Odd</h3>" +
-    makeBar("Even digits", even) +
-    makeBar("Odd digits", odd) +
-    "<hr>" +
+    bar("Even digits", even) +
+    bar("Odd digits", odd) +
     "<h3>Over 4 vs Under 5</h3>" +
-    makeBar("Over 4", over) +
-    makeBar("Under 5", under) +
-    "<p class='muted'>Based on " + data.length +
-    " sample digits. Descriptive statistics only.</p>";
+    bar("Over 4", over) +
+    bar("Under 5", under) +
+    "<p>Sample size: " + data.length + "</p>" +
+    "<p class='muted'>Historical sample statistics only. Not a prediction.</p>";
  }
+ 
  
   const count50 = getCounts(small);
   const count100 = getCounts(large);
