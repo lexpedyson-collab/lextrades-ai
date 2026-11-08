@@ -87,6 +87,50 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
  }</style>
 </head>
 <body>
+ <div class="result" id="advanced-dashboard">
+
+  <h2>🚀 LEXTRADES AI V5.0</h2>
+
+  <p class="muted">
+    ADVANCED STATISTICAL INTELLIGENCE
+  </p>
+
+  <div style="display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;">
+
+    <div class="result">
+      <p class="muted">Sample Size</p>
+      <h2 id="overview-sample">100</h2>
+    </div>
+
+    <div class="result">
+      <p class="muted">Average Digit</p>
+      <h2 id="overview-average">--</h2>
+    </div>
+
+    <div class="result">
+      <p class="muted">Highest Frequency</p>
+      <h2 id="overview-highest">--</h2>
+    </div>
+
+    <div class="result">
+      <p class="muted">Lowest Frequency</p>
+      <h2 id="overview-lowest">--</h2>
+    </div>
+
+  </div>
+
+  <button onclick="updateOverview()">
+    UPDATE DASHBOARD
+  </button>
+
+  <p class="muted">
+    Educational sample data only. Not live market data
+    or a prediction of future results.
+  </p>
+
+</div>
 
 <header>
  <div class="logo">LEX<span>TRADES</span> AI</div>
@@ -718,6 +762,33 @@ function compareSamples(){
       Not a prediction of future results.
     </p>
   `;
+ }
+ function updateOverview(){
+
+  const data = activeSample();
+  const c = counts();
+
+  if(data.length === 0) return;
+
+  const average = (
+    data.reduce((sum, digit) => sum + digit, 0) /
+    data.length
+  ).toFixed(2);
+
+  const highest = Math.max(...c);
+  const lowest = Math.min(...c);
+
+  document.getElementById("overview-sample").textContent =
+    data.length;
+
+  document.getElementById("overview-average").textContent =
+    average;
+
+  document.getElementById("overview-highest").textContent =
+    highest;
+
+  document.getElementById("overview-lowest").textContent =
+    lowest;
  }
  function scan(){
   let data = activeSample();
