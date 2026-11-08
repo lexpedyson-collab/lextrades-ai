@@ -152,6 +152,15 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
  </div>
 </div> <h3>Digit Frequency Analyzer</h3>
  <p class="muted">Distribution across the sample sequence</p>
+ 
+<div class="muted">SELECT SAMPLE SIZE</div>
+<select id="sample-size" onchange="changeSampleSize()">
+  <option value="50">50 Ticks</option>
+  <option value="100" selected>100 Ticks</option>
+  <option value="250" disabled>250 Ticks (Coming soon)</option>
+  <option value="500" disabled>500 Ticks (Coming soon)</option>
+  <option value="1000" disabled>1,000 Ticks (Coming soon)</option>
+</select>
  <div class="grid" id="frequencies"></div>
 </div>
 
