@@ -195,6 +195,20 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
   <p class="muted">
     ADVANCED STATISTICAL INTELLIGENCE
   </p>
+  <div id="dashboard-status" style="
+  background:rgba(0,212,255,0.10);
+  border:1px solid #00d4ff;
+  border-radius:12px;
+  padding:12px;
+  margin:12px 0;
+  text-align:center;">
+  <h3 style="color:#00d4ff;margin:0;">
+    🟢 SAMPLE MODE ACTIVE
+  </h3>
+  <p class="muted" style="margin:6px 0 0;">
+    Educational dataset • Not connected to live markets
+  </p>
+  </div>
 
   <div style="display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -225,6 +239,10 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
   <button onclick="updateOverview()">
     UPDATE DASHBOARD
   </button>
+  <button onclick="refreshAllAnalytics()">
+  🔄 REFRESH ALL ANALYTICS
+  </button>
+  
 <button onclick="exportReport()">
   📥 DOWNLOAD STATISTICAL REPORT
 </button>
@@ -1117,7 +1135,10 @@ It is not live market data or a trading signal.
   drawHeatmap();
   compareSamples();
  }
-
+function refreshAllAnalytics(){
+  refreshSampleViews();
+  alert("All statistical panels refreshed successfully!");
+ }
 function generateSample(){
   const freshData = [];
 
