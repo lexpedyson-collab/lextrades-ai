@@ -410,11 +410,22 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
   
  </div>
  
-<div class="result" id="trendresult">
+<div class="result">
   <h3>📊 Recent Trend Analysis</h3>
-  <p class="muted">Tap the button below to compare recent samples.</p>
+
+  <p class="muted">
+    Compare the previous 10 observations
+    with the latest 10 observations.
+  </p>
+
+  <button onclick="trendScan()">
+    📈 COMPARE RECENT TRENDS
+  </button>
+
+  <div id="trendresult">
+    <p class="muted">Waiting for analysis...</p>
+  </div>
 </div>
- 
 <div class="result">
   <h3>📈 Sample Size Comparison</h3>
   <p class="muted">Compare digit frequencies across two sample sizes.</p>
