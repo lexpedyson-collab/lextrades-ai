@@ -791,6 +791,28 @@ function compareSamples(){
   document.getElementById("overview-lowest").textContent =
     lowest;
  }
+ function selectAccount(mode){
+  const display = document.getElementById("account-display");
+
+  if(!display) return;
+
+  if(mode === "demo"){
+    display.innerHTML = `
+      <h3>🟢 EDUCATIONAL PRACTICE MODE</h3>
+      <p>Status: Local simulation</p>
+      <p>Data: Fictional sample data</p>
+      <p>No real funds or account connection.</p>
+    `;
+  } else {
+    display.innerHTML = `
+      <h3>🔵 REAL ACCOUNT</h3>
+      <p>Status: Not connected</p>
+      <p>LEXTRADES AI is an educational analytics project.</p>
+      <p>No real account access or real-money transactions are supported.</p>
+      <p>Never enter your password, API token or payment details here.</p>
+    `;
+  }
+ }
  function scan(){
   let data = activeSample();
   let c = counts();
