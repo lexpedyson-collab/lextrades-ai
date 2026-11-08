@@ -392,22 +392,63 @@ function analyse(){
     '<p>'+hits+' occurrences out of '+total+' sample digits</p>'+
     '<p class="muted">Historical sample frequency, not a forecast.</p>';
 }
+
 function scan(){
- let c=counts();
- let highest=Math.max(...c),lowest=Math.min(...c);
- let hi=c.indexOf(highest),lo=c.indexOf(lowest);
- document.getElementById("scanresult").innerHTML=
- '<div class="muted">SAMPLE ANALYSIS REPORT</div>'+
- '<p>Most frequent sample digit: <b class="green">'+hi+
- '</b> ('+highest+' occurrences)</p>'+
- '<p>Least frequent sample digit: <b class="purple">'+lo+
- '</b> ('+lowest+' occurrences)</p>'+
- '<p>Even digits: '+sample.filter(x=>x%2===0).length+
- ' occurrences</p>'+
- '<p>Odd digits: '+sample.filter(x=>x%2!==0).length+
- ' occurrences</p>'+
- '<p class="muted">Descriptive statistics only. No prediction of the next digit.</p>';
+  let data = activeSample();
+  let c = counts();
+
+  let ranked = c.map((n,i)=>({
+    digit:i,
+    count:n,
+    percent:(n/data.length*100).toFixed(1)
+  }));
+
+  let hot = [...ranked]
+    .sort((a,b)=>b.count-a.count)
+    .slice(0,3);
+
+  let cold = [...ranked]
+    .sort((a,b)=>a.count-b.count)
+    .slice(0,3);
+
+  let even = data.filter(n=>n%2===0).length;
+  let odd = data.length-even;
+
+  let over = data.filter(n=>n>4).length;
+  let under = data.length-over;
+
+  document.getElementById("scanresult").innerHTML =
+    '<div class="muted">LEXTRADES AI — STATISTICAL REPORT</div>' +
+
+    '<h3 class="green">🔥 Hot Digits</h3>' +
+    hot.map(x=>
+      '<p>Digit '+x.digit+' — '+x.count+
+      ' ticks ('+x.percent+'%)</p>'
+    ).join('') +
+
+    '<h3 class="purple">❄️ Cold Digits</h3>' +
+    cold.map(x=>
+      '<p>Digit '+x.digit+' — '+x.count+
+      ' ticks ('+x.percent+'%)</p>'
+    ).join('') +
+
+    '<hr>' +
+    '<h3>Digit Distribution</h3>' +
+    '<p>Even: '+even+' ('+
+    (even/data.length*100).toFixed(1)+'%)</p>' +
+    '<p>Odd: '+odd+' ('+
+    (odd/data.length*100).toFixed(1)+'%)</p>' +
+    '<p>Over 4: '+over+' ('+
+    (over/data.length*100).toFixed(1)+'%)</p>' +
+    '<p>Under 5: '+under+' ('+
+    (under/data.length*100).toFixed(1)+'%)</p>' +
+
+    '<hr>' +
+    '<p>Total analysed: '+data.length+' ticks</p>' +
+    '<p class="muted">Historical sample statistics only. '+
+    'These frequencies do not predict future digits or guarantee trading results.</p>';
 }
+ 
 document.getElementById("market").addEventListener("change",()=>{
  document.getElementById("scanresult").textContent=
  "Market selection changed. Sample data remains illustrative.";
