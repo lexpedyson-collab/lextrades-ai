@@ -84,7 +84,44 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
 @keyframes digitScroll{
  from{transform:translateX(0)}
  to{transform:translateX(-50%)}
- }</style>
+ }
+ /* V5.3 PREMIUM CHART DESIGN */
+
+#digit-chart,
+#category-chart {
+  margin-top: 15px;
+  padding: 14px;
+  background: linear-gradient(145deg, #111827, #161d2b);
+  border: 1px solid rgba(0,212,255,0.2);
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+#digit-chart > div,
+#category-chart > div {
+  padding: 10px;
+  margin-bottom: 12px;
+  background: rgba(255,255,255,0.025);
+  border-radius: 10px;
+}
+
+#digit-chart > div:last-child,
+#category-chart > div:last-child {
+  margin-bottom: 0;
+}
+
+#digit-chart h3,
+#category-chart h3 {
+  color: #00d4ff;
+  letter-spacing: 0.5px;
+}
+
+#digit-chart span,
+#category-chart span {
+  color: #00d4ff;
+  font-weight: bold;
+}
+</style>
 </head>
 <body>
  <div class="result" id="advanced-dashboard">
