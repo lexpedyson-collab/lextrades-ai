@@ -167,6 +167,17 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
     <p class="muted">Choose an educational view above.</p>
   </div>
 </div>
+ <div class="result">
+  <h3>📊 ADVANCED CATEGORY CHARTS</h3>
+
+  <p class="muted">
+    Visual comparison of the selected educational sample.
+  </p>
+
+  <div id="category-chart">
+    <p class="muted">Waiting for chart data...</p>
+  </div>
+ </div>
 <header>
  <div class="logo">LEX<span>TRADES</span> AI</div>
  <div class="status">● DIGIT ENGINE</div>
@@ -920,6 +931,7 @@ It is not live market data or a trading signal.
   updateOverview();
   drawDigitChart();
   drawStatsDashboard();
+  drawCategoryChart();
   trendScan();
 }
 
@@ -953,6 +965,58 @@ function resetSample(){
   refreshSampleViews();
 
   alert("Original sample restored!");
+ }
+ function drawCategoryChart(){
+
+  const data = activeSample();
+  const result = document.getElementById("category-chart");
+
+  if(!result || data.length === 0) return;
+
+  const even = data.filter(n => n % 2 === 0).length;
+  const odd = data.length - even;
+  const over = data.filter(n => n > 4).length;
+  const under = data.length - over;
+
+  function makeBar(label, count){
+    const percent = (count / data.length * 100).toFixed(1);
+
+    return `
+      <div style="margin:15px 0;">
+        <div style="display:flex;justify-content:space-between;">
+          <b>${label}</b>
+          <span>${count} (${percent}%)</span>
+        </div>
+
+        <div style="height:14px;background:#252a35;
+          border-radius:10px;overflow:hidden;">
+
+          <div style="width:${percent}%;height:14px;
+            background:linear-gradient(90deg,#00d4ff,#8b5cf6);
+            border-radius:10px;">
+          </div>
+
+        </div>
+      </div>
+    `;
+  }
+
+  result.innerHTML = `
+    <h3>Even vs Odd</h3>
+    ${makeBar("Even digits",even)}
+    ${makeBar("Odd digits",odd)}
+
+    <hr>
+
+    <h3>Over 4 vs Under 5</h3>
+    ${makeBar("Over 4",over)}
+    ${makeBar("Under 5",under)}
+
+    <p class="muted">
+      Based on ${data.length} fictional sample observations.
+      Descriptive statistics only.
+    </p>
+  `;
  }
  function scan(){
   let data = activeSample();
