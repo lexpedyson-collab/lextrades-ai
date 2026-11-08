@@ -261,6 +261,21 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
     <p class="muted">Waiting for analysis...</p>
   </div>
  </div>
+ <div class="result">
+  <h3>🧠 Statistical Intelligence Dashboard</h3>
+
+  <p class="muted">
+    Summary of the selected historical sample.
+  </p>
+
+  <button onclick="drawStatsDashboard()">
+    GENERATE STATISTICAL REPORT
+  </button>
+
+  <div id="stats-dashboard">
+    <p class="muted">Waiting for analysis...</p>
+  </div>
+ </div>
  <div class="result" id="scanresult">
   <div class="muted">SCANNER REPORT</div>
   
@@ -639,6 +654,68 @@ function compareSamples(){
     <p class="muted">
       Frequency intensity is based on historical sample counts.
       It does not predict future digits.
+    </p>
+  `;
+ }
+ function drawStatsDashboard(){
+
+  const data = activeSample();
+  const c = counts();
+
+  const result = document.getElementById("stats-dashboard");
+
+  if(!result || data.length === 0) return;
+
+  const maxCount = Math.max(...c);
+  const minCount = Math.min(...c);
+
+  const hottest = c.indexOf(maxCount);
+  const coldest = c.indexOf(minCount);
+
+  const average = (
+    data.reduce((sum, digit) => sum + digit, 0) /
+    data.length
+  ).toFixed(2);
+
+  const even = data.filter(n => n % 2 === 0).length;
+  const odd = data.length - even;
+
+  result.innerHTML = `
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px;">
+
+      <div class="result">
+        <p class="muted">Total observations</p>
+        <h2>${data.length}</h2>
+      </div>
+
+      <div class="result">
+        <p class="muted">Most frequent digit</p>
+        <h2>${hottest}</h2>
+        <p>${maxCount} occurrences</p>
+      </div>
+
+      <div class="result">
+        <p class="muted">Least frequent digit</p>
+        <h2>${coldest}</h2>
+        <p>${minCount} occurrences</p>
+      </div>
+
+      <div class="result">
+        <p class="muted">Average digit value</p>
+        <h2>${average}</h2>
+      </div>
+
+    </div>
+
+    <h3>Even vs Odd</h3>
+
+    <p>Even: ${even} (${(even/data.length*100).toFixed(1)}%)</p>
+
+    <p>Odd: ${odd} (${(odd/data.length*100).toFixed(1)}%)</p>
+
+    <p class="muted">
+      Historical sample statistics only.
+      Not a prediction of future results.
     </p>
   `;
  }
