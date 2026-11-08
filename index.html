@@ -124,7 +124,9 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
   <button onclick="updateOverview()">
     UPDATE DASHBOARD
   </button>
-
+<button onclick="exportReport()">
+  📥 DOWNLOAD STATISTICAL REPORT
+</button>
   <p class="muted">
     Educational sample data only. Not live market data
     or a prediction of future results.
@@ -826,6 +828,71 @@ function compareSamples(){
       <p>Never enter your password, API token or payment details here.</p>
     `;
   }
+ }
+ function exportReport(){
+
+  const data = activeSample();
+  const c = counts();
+
+  if(data.length === 0){
+    alert("No sample data available.");
+    return;
+  }
+
+  const ranked = c.map((count, digit) => ({
+    digit,
+    count,
+    percent: (count / data.length * 100).toFixed(1)
+  })).sort((a,b) => b.count - a.count);
+
+  const even = data.filter(n => n % 2 === 0).length;
+  const odd = data.length - even;
+  const over = data.filter(n => n > 4).length;
+  const under = data.length - over;
+
+  const average = (
+    data.reduce((sum,n) => sum + n, 0) / data.length
+  ).toFixed(2);
+
+  const report = `
+LEXTRADES AI V5.1
+EDUCATIONAL STATISTICAL REPORT
+
+Sample size: ${data.length}
+Average digit: ${average}
+
+DIGIT FREQUENCIES
+${ranked.map(x =>
+  "Digit " + x.digit + ": " +
+  x.count + " (" + x.percent + "%)"
+).join("\n")}
+
+EVEN AND ODD
+Even: ${even}
+Odd: ${odd}
+
+OVER AND UNDER
+Over 4: ${over}
+Under 5: ${under}
+
+NOTE:
+This report uses historical sample data only.
+It does not predict future results.
+It is not live market data or a trading signal.
+`;
+
+  const file = new Blob([report], {
+    type: "text/plain"
+  });
+
+  const url = URL.createObjectURL(file);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "LEXTRADES-Statistical-Report.txt";
+  link.click();
+
+  URL.revokeObjectURL(url);
  }
  function scan(){
   let data = activeSample();
