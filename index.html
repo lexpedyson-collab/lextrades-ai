@@ -487,6 +487,21 @@ nav a{color:#aab7cb;text-decoration:none;font-size:11px}
     <p class="muted">Waiting for analysis...</p>
   </div>
  </div>
+ <div class="result" id="advanced-statistics">
+  <h3>🧠 ADVANCED STATISTICS V5.4</h3>
+
+  <p class="muted">
+    Deeper statistical analysis of your selected sample.
+  </p>
+
+  <button onclick="drawAdvancedStatistics()">
+    GENERATE STATISTICAL ANALYSIS
+  </button>
+
+  <div id="advanced-statistics-result">
+    <p class="muted">Waiting for analysis...</p>
+  </div>
+ </div>
  <div class="result" id="scanresult">
   <div class="muted">SCANNER REPORT</div>
   
@@ -1094,6 +1109,7 @@ It is not live market data or a trading signal.
   updateOverview();
   drawDigitChart();
   drawStatsDashboard();
+  drawAdvancedStatistics();
   drawCategoryChart();
   trendScan();
   drawTrendChart();
@@ -1179,6 +1195,61 @@ function resetSample(){
     <p class="muted">
       Based on ${data.length} fictional sample observations.
       Descriptive statistics only.
+    </p>
+  `;
+ }
+ function drawAdvancedStatistics(){
+  const data = activeSample();
+  const result = document.getElementById("advanced-statistics-result");
+
+  if(!result || data.length === 0) return;
+
+  const sorted = [...data].sort((a,b)=>a-b);
+
+  const middle = Math.floor(sorted.length / 2);
+
+  const median = sorted.length % 2 === 0
+    ? (sorted[middle - 1] + sorted[middle]) / 2
+    : sorted[middle];
+
+  const counts = Array(10).fill(0);
+  data.forEach(n => counts[n]++);
+
+  const highest = Math.max(...counts);
+  const modes = counts
+    .map((count,digit)=>count === highest ? digit : null)
+    .filter(digit=>digit !== null);
+
+  const mean = data.reduce((sum,n)=>sum+n,0) / data.length;
+
+  const variance = data.reduce(
+    (sum,n)=>sum + Math.pow(n-mean,2),0
+  ) / data.length;
+
+  const standardDeviation = Math.sqrt(variance);
+
+  result.innerHTML = `
+    <div class="result">
+      <p class="muted">MEDIAN</p>
+      <h2>${median}</h2>
+      <p>Middle value of the ordered sample.</p>
+    </div>
+
+    <div class="result">
+      <p class="muted">MODE</p>
+      <h2>${modes.join(", ")}</h2>
+      <p>Most frequent digit(s): ${highest} occurrences.</p>
+    </div>
+
+    <div class="result">
+      <p class="muted">STANDARD DEVIATION</p>
+      <h2>${standardDeviation.toFixed(2)}</h2>
+      <p>Spread of observations around the average.</p>
+    </div>
+
+    <p class="muted">
+      Calculated using ${data.length} fictional sample observations.
+      Descriptive statistics only, not predictions.
     </p>
   `;
  }
