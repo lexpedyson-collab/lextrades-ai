@@ -518,6 +518,8 @@ function compareSamples(){
 function drawDistribution(){
   const data = activeSample();
 
+ document.getElementById("distribution-result").innerHTML =
+  "<h3>Analysis started successfully!</h3>";
   const even = data.filter(n => n % 2 === 0).length;
   const odd = data.length - even;
   const over = data.filter(n => n > 4).length;
