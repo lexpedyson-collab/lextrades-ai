@@ -556,14 +556,12 @@ function analyse(){
     '<p class="muted">Historical sample frequency, not a forecast.</p>';
 }
 
-function trendScan(){
- drawDigitChart();
 function drawDigitChart(){
   const data = activeSample();
   const c = counts();
 
   const chart = document.getElementById("digit-chart");
-
+if(!chart || data.length === 0) return;
   chart.innerHTML = c.map((count, digit) => {
     const percent = (count / data.length * 100).toFixed(1);
     const width = percent;
@@ -581,7 +579,7 @@ function drawDigitChart(){
     `;
   }).join("");
 }
- 
+ function trendScan(){
   const data = activeSample();
 
   const recent = data.slice(-10);
@@ -1079,8 +1077,10 @@ document.getElementById("market").addEventListener("change",()=>{
  document.getElementById("scanresult").textContent=
  "Market selection changed. Sample data remains illustrative.";
 });
-draw();
-analyse();
+refreshSampleViews();
+drawDistribution();
+drawHeatmap();
+compareSamples();
 </script>
 </body>
 </html>
