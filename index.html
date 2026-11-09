@@ -951,6 +951,26 @@ body.animations-off *::after {
   Animations: ON
 </p>
  
+<hr style="border-color:#263b50;">
+
+<h3>🔄 Reset Preferences</h3>
+
+<p class="muted">
+  Restore all appearance settings to their defaults.
+</p>
+
+<button onclick="resetDashboardSettings()" style="
+  background:linear-gradient(135deg,#dc2626,#991b1b);
+  color:white;
+  border:1px solid #ef4444;">
+  🔄 RESET DASHBOARD SETTINGS
+</button>
+
+<p class="muted">
+  This resets appearance preferences only.
+  Your sample data and reports will remain unchanged.
+</p>
+ 
   <h3>ℹ️ About LEXTRADES AI</h3>
 
   <p class="muted">
@@ -1075,6 +1095,45 @@ function toggleAnimations(){
       : "Animations: ON";
    }
  }
+ 
+// V6.4 RESET DASHBOARD SETTINGS
+function resetDashboardSettings(){
+
+  const confirmReset = confirm(
+    "Restore all dashboard appearance settings to default?"
+  );
+
+  if(!confirmReset) return;
+
+  localStorage.setItem("lextrades-theme", "dark");
+  localStorage.setItem("lextrades-display", "comfortable");
+  localStorage.setItem("lextrades-font-size", "normal");
+  localStorage.setItem("lextrades-animations", "on");
+
+  document.body.classList.remove(
+    "light-theme",
+    "compact-view",
+    "font-small",
+    "font-large",
+    "animations-off"
+  );
+
+  document.body.classList.add(
+    "comfortable-view",
+    "font-normal"
+  );
+
+  const fontSelector = document.getElementById("font-size-selector");
+  if(fontSelector) fontSelector.value = "normal";
+
+  const displayStatus = document.getElementById("display-mode-status");
+  if(displayStatus) displayStatus.textContent = "Current layout: Comfortable";
+
+  const animationStatus = document.getElementById("animation-status");
+  if(animationStatus) animationStatus.textContent = "Animations: ON";
+
+  alert("Dashboard settings restored successfully!");
+   }
  
 // V6.3 RESTORE ANIMATION PREFERENCE
 function restoreAnimationPreference(){
