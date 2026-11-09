@@ -418,6 +418,34 @@ body.comfortable-view .result {
   padding: 20px;
   margin-bottom: 16px;
 }
+
+/* V6.2 FONT SIZE STYLES */
+
+body.font-small {
+  font-size: 13px;
+}
+
+body.font-normal {
+  font-size: 16px;
+}
+
+body.font-large {
+  font-size: 19px;
+}
+
+/* Keep headings readable */
+
+body.font-small h2 {
+  font-size: 19px;
+}
+
+body.font-large h2 {
+  font-size: 27px;
+}
+
+body.font-large p {
+  line-height: 1.7;
+}
  
 </style>
 </head>
@@ -873,6 +901,29 @@ body.comfortable-view .result {
 <p id="display-mode-status" class="muted">
   Current layout: Comfortable
 </p>
+
+ 
+<hr style="border-color:#263b50;">
+
+<h3>🔤 Font Size</h3>
+
+<p class="muted">
+  Adjust dashboard text size.
+</p>
+
+<select id="font-size-selector"
+  onchange="setFontSize(this.value)"
+  style="width:100%;padding:12px;border-radius:8px;">
+
+  <option value="normal">Normal Size</option>
+  <option value="small">Small Size</option>
+  <option value="large">Large Size</option>
+
+</select>
+
+<p class="muted">
+  Choose the text size that is comfortable to read.
+</p>
  
   <h3>ℹ️ About LEXTRADES AI</h3>
 
@@ -958,6 +1009,28 @@ function setDisplayMode(mode){
   );
 }
 
+// V6.2 FONT SIZE CONTROL
+function setFontSize(size){
+
+  document.body.classList.remove(
+    "font-small",
+    "font-normal",
+    "font-large"
+  );
+
+  document.body.classList.add("font-" + size);
+
+  localStorage.setItem("lextrades-font-size", size);
+
+  const selector = document.getElementById("font-size-selector");
+
+  if(selector){
+    selector.value = size;
+  }
+
+  alert("Font size updated!");
+}
+ 
 // V6.1 RESTORE SAVED DISPLAY MODE
 function restoreDisplayMode(){
 
