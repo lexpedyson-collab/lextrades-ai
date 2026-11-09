@@ -638,7 +638,20 @@ body.animations-off *::after {
   </div>
 
 </div>
- 
+ <!-- V7.1 NOTIFICATION CENTRE -->
+<div class="card" id="notification-centre" style="
+  padding:18px;
+  margin-top:12px;
+  border:1px solid #00d4ff;
+  border-radius:16px;
+">
+  <h3>🔔 Notification Centre</h3>
+  <p class="muted">Dashboard updates and activity messages.</p>
+
+  <div id="notification-list">
+    <p class="muted">No new notifications.</p>
+  </div>
+</div>
 <div style="margin:20px 0 18px;">
   <h2 style="
     font-size:26px;
@@ -1864,10 +1877,28 @@ function generateSample(){
 // Keep the user's selected sample size
 
   refreshSampleViews();
+ showNotification("New educational sample data generated successfully.");
 
   alert("Fresh educational sample generated!");
 }
+// V7.1 NOTIFICATION SYSTEM
+function showNotification(message){
+  const list = document.getElementById("notification-list");
+  if(!list) return;
 
+  const item = document.createElement("p");
+  item.textContent = "🔔 " + message;
+  item.style.padding = "10px";
+  item.style.margin = "6px 0";
+  item.style.background = "rgba(0,212,255,0.08)";
+  item.style.borderRadius = "8px";
+
+  if(list.textContent.includes("No new notifications")){
+    list.innerHTML = "";
+  }
+
+  list.prepend(item);
+ }
 function resetSample(){
   sample.splice(0, sample.length, ...originalSample);
 
