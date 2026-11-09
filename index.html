@@ -1628,11 +1628,23 @@ function toggleTheme(){
 
   const isLight = document.body.classList.contains("light-theme");
 
+  localStorage.setItem(
+    "lextrades-theme",
+    isLight ? "light" : "dark"
+  );
+
   alert(
     isLight
       ? "Light Mode Activated!"
       : "Dark Mode Activated!"
   );
+}
+ // RESTORE SAVED THEME
+
+const savedTheme = localStorage.getItem("lextrades-theme");
+
+if(savedTheme === "light"){
+  document.body.classList.add("light-theme");
 }
 </script>
  <button onclick="window.scrollTo({
