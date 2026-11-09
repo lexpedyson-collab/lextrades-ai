@@ -1693,6 +1693,23 @@ if(document.readyState === "loading"){
 } else {
   restoreSavedTheme();
 }
+ // V5.8 SETTINGS PANEL CONTROL
+function toggleSettings(){
+  const panel = document.getElementById("user-settings");
+
+  if(!panel) return;
+
+  const isHidden = panel.style.display === "none";
+
+  panel.style.display = isHidden ? "block" : "none";
+
+  if(isHidden){
+    panel.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
 </script>
  <button onclick="window.scrollTo({
   top: 0,
