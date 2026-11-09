@@ -323,6 +323,29 @@ header {
   gap: 10px;
   margin-top: 14px;
 }
+ /* V5.7 SMOOTH NAVIGATION */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+
+nav a {
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+nav a:active {
+  color: #00d4ff;
+  transform: scale(1.08);
+}
+ /* V5.7 ACTIVE NAVIGATION */
+
+nav a.active {
+  color: #00d4ff;
+  text-shadow: 0 0 10px rgba(0,212,255,0.6);
+  border-bottom: 2px solid #00d4ff;
+  padding-bottom: 6px;
+}
 </style>
 </head>
 <body>
@@ -1525,6 +1548,24 @@ refreshSampleViews();
 drawDistribution();
 drawHeatmap();
 compareSamples();
+ // V5.7 ACTIVE NAVIGATION CONTROL
+
+const navLinks = document.querySelectorAll("nav a");
+
+navLinks.forEach(link => {
+  link.addEventListener("click", function(){
+    navLinks.forEach(item => {
+      item.classList.remove("active");
+    });
+
+    this.classList.add("active");
+  });
+});
+
+// Set Home as the default active item
+if(navLinks.length > 0){
+  navLinks[0].classList.add("active");
+}
 </script>
 </body>
 </html>
