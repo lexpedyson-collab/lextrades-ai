@@ -781,23 +781,67 @@ body.light-theme .ticker-track span {
  of the next digit.
  </p>
 </div>
-<div id="user-settings" class="card" style="display:none;">
-  <h2>⚙ Dashboard Settings</h2>
 
-  <p class="muted">CUSTOMISE YOUR EXPERIENCE</p>
+<div id="user-settings" class="card" style="
+  display:none;
+  padding:20px;
+  border:1px solid #00d4ff;
+  border-radius:18px;
+  background:linear-gradient(145deg,#10243d,#071321);
+  box-shadow:0 0 20px rgba(0,212,255,0.12);
+">
+
+  <h2 style="color:#00d4ff;">
+    ⚙ Dashboard Settings
+  </h2>
+
+  <p class="muted">
+    CUSTOMISE YOUR LEXTRADES EXPERIENCE
+  </p>
+
+  <hr style="border-color:#263b50;">
+
+  <h3>🎨 Appearance</h3>
+
+  <p class="muted">
+    Choose your preferred dashboard theme.
+  </p>
 
   <button onclick="toggleTheme()">
     🌙 / ☀️ CHANGE THEME
   </button>
 
+  <hr style="border-color:#263b50;">
+
+  <h3>📊 Data Preferences</h3>
+
   <p class="muted">
-    Theme preferences are saved automatically.
+    Dataset: Educational sample data
+  </p>
+
+  <p class="muted">
+    Available sample sizes: 50 and 100
+  </p>
+
+  <hr style="border-color:#263b50;">
+
+  <h3>ℹ️ About LEXTRADES AI</h3>
+
+  <p class="muted">
+    Version 5.9
+  </p>
+
+  <p class="muted">
+    Educational statistical analysis and data visualisation.
+    Historical sample frequencies do not predict future outcomes.
   </p>
 
   <button onclick="toggleSettings()">
-    CLOSE SETTINGS
+    ✕ CLOSE SETTINGS
   </button>
+
 </div>
+ 
 <nav>
  <a href="#">⌂ Home</a>
  <a href="#market">◈ Markets</a>
