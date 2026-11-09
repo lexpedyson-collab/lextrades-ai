@@ -781,14 +781,48 @@ body.light-theme .ticker-track span {
  of the next digit.
  </p>
 </div>
+<div id="user-settings" class="card" style="display:none;">
+  <h2>⚙ Dashboard Settings</h2>
 
+  <p class="muted">CUSTOMISE YOUR EXPERIENCE</p>
+
+  <button onclick="toggleTheme()">
+    🌙 / ☀️ CHANGE THEME
+  </button>
+
+  <p class="muted">
+    Theme preferences are saved automatically.
+  </p>
+
+  <button onclick="toggleSettings()">
+    CLOSE SETTINGS
+  </button>
+</div>
 <nav>
  <a href="#">⌂ Home</a>
  <a href="#market">◈ Markets</a>
  <a href="#settings">◎ Scanner</a>
  <a href="#scanresult">⚙ Analysis</a>
+<a href="#user-settings" onclick="toggleSettings()">⚙ Settings</a> 
 </nav>
+// V5.8 SETTINGS PANEL CONTROL
 
+function toggleSettings(){
+  const panel = document.getElementById("user-settings");
+
+  if(!panel) return;
+
+  const isHidden = panel.style.display === "none";
+
+  panel.style.display = isHidden ? "block" : "none";
+
+  if(isHidden){
+    panel.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
 <script>
 const sample=[
  7,2,5,1,9,4,3,8,0,6,7,3,2,9,1,5,8,4,6,0,
