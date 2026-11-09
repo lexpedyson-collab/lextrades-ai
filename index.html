@@ -957,6 +957,37 @@ function setDisplayMode(mode){
       : "Comfortable View Activated!"
   );
 }
+
+// V6.1 RESTORE SAVED DISPLAY MODE
+function restoreDisplayMode(){
+
+  const savedMode = localStorage.getItem("lextrades-display");
+
+  const mode = savedMode === "compact"
+    ? "compact"
+    : "comfortable";
+
+  document.body.classList.remove(
+    "compact-view",
+    "comfortable-view"
+  );
+
+  document.body.classList.add(mode + "-view");
+
+  const status = document.getElementById("display-mode-status");
+
+  if(status){
+    status.textContent =
+      "Current layout: " +
+      (mode === "compact" ? "Compact" : "Comfortable");
+  }
+}
+
+if(document.readyState === "loading"){
+  document.addEventListener("DOMContentLoaded", restoreDisplayMode);
+} else {
+  restoreDisplayMode();
+}
  
 const sample=[
  7,2,5,1,9,4,3,8,0,6,7,3,2,9,1,5,8,4,6,0,
