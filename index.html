@@ -447,6 +447,16 @@ body.font-large p {
   line-height: 1.7;
 }
  
+/* V6.3 DISABLE DASHBOARD ANIMATIONS */
+
+body.animations-off *,
+body.animations-off *::before,
+body.animations-off *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+ }
+ 
 </style>
 </head>
 <body>
@@ -925,6 +935,22 @@ body.font-large p {
   Choose the text size that is comfortable to read.
 </p>
  
+<hr style="border-color:#263b50;">
+
+<h3>✨ Animation Preferences</h3>
+
+<p class="muted">
+  Control dashboard animations.
+</p>
+
+<button onclick="toggleAnimations()">
+  ✨ TOGGLE ANIMATIONS
+</button>
+
+<p id="animation-status" class="muted">
+  Animations: ON
+</p>
+ 
   <h3>ℹ️ About LEXTRADES AI</h3>
 
   <p class="muted">
@@ -1029,6 +1055,50 @@ function setFontSize(size){
   }
 
   alert("Font size updated!");
+}
+ 
+// V6.3 ANIMATION CONTROL
+function toggleAnimations(){
+
+  const isOff = document.body.classList.toggle("animations-off");
+
+  localStorage.setItem(
+    "lextrades-animations",
+    isOff ? "off" : "on"
+  );
+
+  const status = document.getElementById("animation-status");
+
+  if(status){
+    status.textContent = isOff
+      ? "Animations: OFF"
+      : "Animations: ON";
+   }
+ }
+ 
+// V6.3 RESTORE ANIMATION PREFERENCE
+function restoreAnimationPreference(){
+
+  const saved = localStorage.getItem("lextrades-animations");
+
+  if(saved === "off"){
+    document.body.classList.add("animations-off");
+  } else {
+    document.body.classList.remove("animations-off");
+  }
+
+  const status = document.getElementById("animation-status");
+
+  if(status){
+    status.textContent =
+      saved === "off" ? "Animations: OFF" : "Animations: ON";
+  }
+}
+
+if(document.readyState === "loading"){
+  document.addEventListener("DOMContentLoaded", restoreAnimationPreference);
+} else {
+  restoreAnimationPreference();
 }
  
 // V6.1 RESTORE SAVED DISPLAY MODE
