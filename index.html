@@ -1113,6 +1113,11 @@ function setDisplayMode(mode){
       ? "Compact View Activated!"
       : "Comfortable View Activated!"
   );
+ showNotification(
+  mode === "compact"
+    ? "Compact view activated."
+    : "Comfortable view activated."
+);
 }
 
 // V6.2 FONT SIZE CONTROL
@@ -1194,7 +1199,7 @@ function resetDashboardSettings(){
 
   alert("Dashboard settings restored successfully!");
    }
- 
+ showNotification("Dashboard preferences restored to default.");
 // V6.3 RESTORE ANIMATION PREFERENCE
 function restoreAnimationPreference(){
 
