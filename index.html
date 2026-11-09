@@ -391,6 +391,34 @@ body.light-theme .ticker-track span {
   background: #dbeafe;
   color: #0369a1;
 }
+ 
+/* V6.0 COMPACT VIEW */
+body.compact-view .card,
+body.compact-view .result {
+  padding: 10px !important;
+  margin-bottom: 8px !important;
+}
+
+body.compact-view h2 {
+  font-size: 18px;
+}
+
+body.compact-view h3 {
+  font-size: 15px;
+}
+
+body.compact-view p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* V6.0 COMFORTABLE VIEW */
+body.comfortable-view .card,
+body.comfortable-view .result {
+  padding: 20px;
+  margin-bottom: 16px;
+}
+ 
 </style>
 </head>
 <body>
@@ -824,7 +852,34 @@ body.light-theme .ticker-track span {
   </p>
 
   <hr style="border-color:#263b50;">
+  
+// V6.0 DISPLAY PREFERENCES
+function setDisplayMode(mode){
 
+  document.body.classList.remove(
+    "compact-view",
+    "comfortable-view"
+  );
+
+  document.body.classList.add(mode + "-view");
+
+  localStorage.setItem("lextrades-display", mode);
+
+  const status = document.getElementById("display-mode-status");
+
+  if(status){
+    status.textContent =
+      "Current layout: " +
+      (mode === "compact" ? "Compact" : "Comfortable");
+  }
+
+  alert(
+    mode === "compact"
+      ? "Compact View Activated!"
+      : "Comfortable View Activated!"
+  );
+}
+ 
   <h3>ℹ️ About LEXTRADES AI</h3>
 
   <p class="muted">
@@ -881,6 +936,34 @@ function toggleSettings(){
     });
   }
  }
+ 
+// V6.0 DISPLAY PREFERENCES
+function setDisplayMode(mode){
+
+  document.body.classList.remove(
+    "compact-view",
+    "comfortable-view"
+  );
+
+  document.body.classList.add(mode + "-view");
+
+  localStorage.setItem("lextrades-display", mode);
+
+  const status = document.getElementById("display-mode-status");
+
+  if(status){
+    status.textContent =
+      "Current layout: " +
+      (mode === "compact" ? "Compact" : "Comfortable");
+  }
+
+  alert(
+    mode === "compact"
+      ? "Compact View Activated!"
+      : "Comfortable View Activated!"
+  );
+}
+ 
 const sample=[
  7,2,5,1,9,4,3,8,0,6,7,3,2,9,1,5,8,4,6,0,
  2,7,4,9,3,1,6,8,5,0,7,2,3,5,9,4,1,8,6,0,
