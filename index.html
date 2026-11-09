@@ -853,32 +853,26 @@ body.comfortable-view .result {
 
   <hr style="border-color:#263b50;">
   
-// V6.0 DISPLAY PREFERENCES
-function setDisplayMode(mode){
+ 
+<hr style="border-color:#263b50;">
 
-  document.body.classList.remove(
-    "compact-view",
-    "comfortable-view"
-  );
+<h3>📱 Display Preferences</h3>
 
-  document.body.classList.add(mode + "-view");
+<p class="muted">
+  Choose how dashboard information is displayed.
+</p>
 
-  localStorage.setItem("lextrades-display", mode);
+<button onclick="setDisplayMode('comfortable')">
+  COMFORTABLE VIEW
+</button>
 
-  const status = document.getElementById("display-mode-status");
+<button onclick="setDisplayMode('compact')">
+  COMPACT VIEW
+</button>
 
-  if(status){
-    status.textContent =
-      "Current layout: " +
-      (mode === "compact" ? "Compact" : "Comfortable");
-  }
-
-  alert(
-    mode === "compact"
-      ? "Compact View Activated!"
-      : "Comfortable View Activated!"
-  );
-}
+<p id="display-mode-status" class="muted">
+  Current layout: Comfortable
+</p>
  
   <h3>ℹ️ About LEXTRADES AI</h3>
 
@@ -924,6 +918,7 @@ function toggleSettings(){
     });
   }
 }
+ 
  function openSettings(){
   const panel = document.getElementById("user-settings");
 
@@ -936,7 +931,6 @@ function toggleSettings(){
     });
   }
  }
- 
 // V6.0 DISPLAY PREFERENCES
 function setDisplayMode(mode){
 
