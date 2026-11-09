@@ -570,6 +570,7 @@ function changeSampleSize(){
   draw();
   analyse();
   updateOverview();
+ updateDashboardStatus();
   drawDigitChart();
   drawStatsDashboard();
   drawAdvancedStatistics();
@@ -1130,6 +1131,7 @@ It is not live market data or a trading signal.
   draw();
   analyse();
   updateOverview();
+  updateDashboardStatus();
   drawDigitChart();
   drawStatsDashboard();
   drawAdvancedStatistics();
@@ -1143,6 +1145,24 @@ It is not live market data or a trading signal.
 function refreshAllAnalytics(){
   refreshSampleViews();
   alert("All statistical panels refreshed successfully!");
+ }
+ function updateDashboardStatus(){
+  const status = document.getElementById("dashboard-status");
+  const data = activeSample();
+
+  if(!status || data.length === 0) return;
+
+  status.innerHTML = `
+    <h3 style="color:#00d4ff;margin:0;">
+      🟢 SAMPLE MODE ACTIVE
+    </h3>
+    <p class="muted" style="margin:6px 0 0;">
+      Educational dataset • ${data.length} observations
+    </p>
+    <p class="muted" style="margin:4px 0 0;">
+      Not connected to live markets
+    </p>
+  `;
  }
 function generateSample(){
   const freshData = [];
