@@ -39,8 +39,22 @@ button.active{background:#35e5a0;color:#07140f}
  padding:12px 0;border-bottom:1px solid #28364b;font-size:13px}
 .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .tabs button{font-size:12px;padding:13px 3px}
-.big{font-size:34px;font-weight:bold;color:#35e5a0}
-.scanner{text-align:center;padding:10px}
+.big {
+  font-size: 58px;
+  font-weight: 900;
+  color: #00d4ff;
+  text-shadow: 0 0 15px rgba(0,212,255,0.45);
+  padding: 12px;
+  transition: all 0.3s ease;
+}
+.scanner {
+  text-align: center;
+  padding: 20px 10px;
+  background: linear-gradient(145deg,#101b30,#172b48);
+  border: 1px solid rgba(0,212,255,0.2);
+  border-radius: 16px;
+  margin-top: 12px;
+}
 .orb{width:82px;height:82px;border:2px solid #35e5a0;
  border-radius:50%;display:flex;align-items:center;
  justify-content:center;margin:15px auto;
@@ -50,10 +64,34 @@ button.active{background:#35e5a0;color:#07140f}
 .history{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
 .history span{background:#25354c;border-radius:7px;
  padding:10px;font-weight:bold;min-width:30px;text-align:center}
-nav{position:fixed;bottom:0;left:0;width:100%;
- background:#0c1422;border-top:1px solid #29374b;
- display:flex;justify-content:space-around;padding:17px 0}
-nav a{color:#aab7cb;text-decoration:none;font-size:11px}
+/* V5.6 PREMIUM BOTTOM NAVIGATION */
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(90deg,#0b1424,#14243b);
+  border-top: 1px solid rgba(0,212,255,0.3);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px 0;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+nav a {
+  color: #aab7cb;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #00d4ff;
+}
 /* LEX AI ANIMATED DIGIT TICKER */
 .ticker-box{
  background:#111a2a;
@@ -252,6 +290,39 @@ header {
   font-size: 11px;
   font-weight: bold;
 }
+ /* V5.6 PREMIUM PANEL DESIGN */
+
+.card {
+  background: linear-gradient(145deg,#101b30,#17243b);
+  border: 1px solid rgba(0,212,255,0.22);
+  border-radius: 17px;
+  padding: 18px;
+  margin: 16px 0;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.25);
+}
+
+.card .muted {
+  letter-spacing: 0.4px;
+}
+
+.card select {
+  width: 100%;
+  padding: 13px;
+  margin: 12px 0;
+  border-radius: 10px;
+  border: 1px solid #29415e;
+  background: #0b1424;
+  color: #f1f5ff;
+  font-size: 14px;
+}
+
+.card .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
 </style>
 </head>
 <body>
@@ -377,8 +448,24 @@ header {
   </div>
 </header>
 
-<h2>Digit Intelligence</h2>
-<p class="muted">Deriv Synthetic Indices Statistical Analysis</p>
+<div style="margin:20px 0 18px;">
+  <h2 style="
+    font-size:26px;
+    margin-bottom:7px;
+    background:linear-gradient(90deg,#00d4ff,#a78bfa);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;">
+    Statistical Intelligence
+  </h2>
+
+  <p class="muted" style="font-size:13px;">
+    LEXTRADES AI • Educational Data Analytics
+  </p>
+
+  <p class="muted" style="font-size:11px;">
+    Analyse sample datasets, explore distributions and compare observations.
+  </p>
+</div>
 
 <div class="card">
  <div class="muted">SELECT SYNTHETIC MARKET</div>
