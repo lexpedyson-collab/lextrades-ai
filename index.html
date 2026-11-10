@@ -67,18 +67,21 @@ button.active{background:#35e5a0;color:#07140f}
 /* V5.6 PREMIUM BOTTOM NAVIGATION */
 
 nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(90deg,#0b1424,#14243b);
-  border-top: 1px solid rgba(0,212,255,0.3);
-  display: flex;
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 65px;
+  background: #0b1424 !important;
+  border-top: 1px solid var(--accent-color);
+  display: flex !important;
   justify-content: space-around;
   align-items: center;
-  padding: 15px 0;
-  box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
-  z-index: 1000;
+  padding: 5px 2px;
+  box-sizing: border-box;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+  z-index: 99999 !important;
 }
 
 nav a {
