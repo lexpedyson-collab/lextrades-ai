@@ -625,6 +625,13 @@ body.animations-off *::after {
   <h2 style="margin-bottom:8px;">
     Welcome to LEXTRADES AI
   </h2>
+ <p style="
+  color:#00d4ff;
+  font-weight:bold;
+  margin-top:8px;
+">
+  Welcome, <span id="profile-name">LEXPEDY USER</span>
+ </p>
 
   <p class="muted">
     Your professional statistical intelligence dashboard.
@@ -2384,6 +2391,16 @@ if(document.readyState === "loading"){
 } else {
   restoreSavedTheme();
 }
+ // V7.7 RESTORE PROFILE NAME
+function restoreProfileName(){
+  const profileName = document.getElementById("profile-name");
+
+  if(profileName){
+    profileName.textContent = "LEXPEDY USER";
+  }
+}
+
+restoreProfileName();
 // V7.5 RESTORE ACCENT COLOUR
 function restoreAccentColor(){
   const saved = localStorage.getItem("lextrades-accent");
