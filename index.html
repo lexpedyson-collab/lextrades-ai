@@ -546,6 +546,21 @@ body:not(.animations-off) .card:nth-of-type(4) {
 body:not(.animations-off) .card:nth-of-type(5) {
   animation-delay: 0.5s;
 }
+ /* V8.2 DEMO ENGINE STATUS PULSE */
+@keyframes enginePulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 10px #22c55e;
+  }
+  50% {
+    opacity: 0.4;
+    box-shadow: 0 0 2px #22c55e;
+  }
+}
+
+body:not(.animations-off) .engine-indicator {
+  animation: enginePulse 1.5s infinite;
+}
 </style>
 </head>
 <body>
@@ -745,7 +760,18 @@ body:not(.animations-off) .card:nth-of-type(5) {
 
     <div>
       <small class="muted">ENGINE STATUS</small>
-      <h3 style="color:#22c55e;">ACTIVE</h3>
+      <h3 style="color:#22c55e;">
+  <span style="
+    display:inline-block;
+    width:9px;
+    height:9px;
+    background:#22c55e;
+    border-radius:50%;
+    margin-right:6px;
+    box-shadow:0 0 10px #22c55e;
+  "></span>
+  DEMO ENGINE ACTIVE
+      </h3>
     </div>
   </div>
 
