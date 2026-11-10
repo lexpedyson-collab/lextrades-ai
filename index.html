@@ -1295,6 +1295,12 @@ function resetDashboardSettings(){
   localStorage.setItem("lextrades-display", "comfortable");
   localStorage.setItem("lextrades-font-size", "normal");
   localStorage.setItem("lextrades-animations", "on");
+ localStorage.setItem("lextrades-accent", "#00d4ff");
+
+document.documentElement.style.setProperty(
+  "--accent-color",
+  "#00d4ff"
+);
 
   document.body.classList.remove(
     "light-theme",
@@ -1317,6 +1323,8 @@ function resetDashboardSettings(){
 
   const animationStatus = document.getElementById("animation-status");
   if(animationStatus) animationStatus.textContent = "Animations: ON";
+ const accentStatus = document.getElementById("accent-color-status");
+if(accentStatus) accentStatus.textContent = "Current accent: Cyan";
 
   alert("Dashboard settings restored successfully!");
    }
