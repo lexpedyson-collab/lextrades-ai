@@ -468,9 +468,68 @@ body.animations-off *::after {
 #dashboard-search {
   border-color: var(--accent-color) !important;
 }
+ /* V8.0 LEXPEDY LOADING SCREEN */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background: #000000;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease;
+}
+
+#loading-screen h1 {
+  color: #00d4ff;
+  text-shadow: 0 0 15px #00d4ff;
+  animation: logoGlow 1.5s infinite alternate;
+}
+
+#loading-bar {
+  width: 180px;
+  height: 5px;
+  background: #263b50;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+#loading-progress {
+  width: 0%;
+  height: 100%;
+  background: #00d4ff;
+  animation: loadingProgress 2s ease forwards;
+}
+
+@keyframes logoGlow {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+@keyframes loadingProgress {
+  to { width: 100%; }
+}
 </style>
 </head>
 <body>
+<!-- V8.0 LEXPEDY LOADING SCREEN -->
+<div id="loading-screen">
+  <h1>LEXPEDY NETWORKS</h1>
+
+  <p style="color:#9ca3af;">
+    POWERED BY LEXTRADES AI
+  </p>
+
+  <div id="loading-bar">
+    <div id="loading-progress"></div>
+  </div>
+
+  <p style="color:#00d4ff;font-size:12px;margin-top:12px;">
+    INITIALIZING DASHBOARD...
+  </p>
+</div> 
  <div class="result" id="advanced-dashboard">
 
   <h2>🚀 LEXTRADES AI V5.0</h2>
@@ -2391,6 +2450,21 @@ if(document.readyState === "loading"){
 } else {
   restoreSavedTheme();
 }
+ // V8.0 HIDE LOADING SCREEN
+window.addEventListener("load", function(){
+  const loadingScreen = document.getElementById("loading-screen");
+
+  if(loadingScreen){
+    setTimeout(function(){
+      loadingScreen.style.opacity = "0";
+
+      setTimeout(function(){
+        loadingScreen.style.display = "none";
+      }, 600);
+
+    }, 2000);
+  }
+});
  // V7.7 RESTORE PROFILE NAME
 function restoreProfileName(){
   const profileName = document.getElementById("profile-name");
