@@ -456,7 +456,18 @@ body.animations-off *::after {
   transition: none !important;
   scroll-behavior: auto !important;
  }
- 
+ /* V7.5 CUSTOM ACCENT COLOUR */
+:root {
+  --accent-color: #00d4ff;
+}
+
+#user-settings,
+#welcome-panel,
+#notification-centre,
+#activity-history,
+#dashboard-search {
+  border-color: var(--accent-color) !important;
+}
 </style>
 </head>
 <body>
@@ -1088,7 +1099,30 @@ body.animations-off *::after {
   This resets appearance preferences only.
   Your sample data and reports will remain unchanged.
 </p>
- 
+ <!-- V7.5 CUSTOM DASHBOARD COLOURS -->
+<hr style="border-color:#263b50;">
+
+<h3>🎨 Custom Dashboard Colours</h3>
+
+<p class="muted">
+  Choose your preferred dashboard accent colour.
+</p>
+
+<div style="
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+">
+  <button onclick="setAccentColor('#00d4ff')">CYAN</button>
+  <button onclick="setAccentColor('#a855f7')">PURPLE</button>
+  <button onclick="setAccentColor('#22c55e')">GREEN</button>
+  <button onclick="setAccentColor('#f59e0b')">GOLD</button>
+  <button onclick="setAccentColor('#ef4444')">RED</button>
+</div>
+
+<p id="accent-color-status" class="muted">
+  Current accent: Cyan
+</p>
   <h3>ℹ️ About LEXTRADES AI</h3>
 
   <p class="muted">
@@ -1199,7 +1233,36 @@ function setFontSize(size){
 
   alert("Font size updated!");
 }
- 
+ // V7.5 CUSTOM ACCENT COLOUR
+function setAccentColor(color){
+  document.documentElement.style.setProperty(
+    "--accent-color",
+    color
+  );
+
+  localStorage.setItem("lextrades-accent", color);
+
+  const names = {
+    "#00d4ff":"Cyan",
+    "#a855f7":"Purple",
+    "#22c55e":"Green",
+    "#f59e0b":"Gold",
+    "#ef4444":"Red"
+  };
+
+  const status = document.getElementById(
+    "accent-color-status"
+  );
+
+  if(status){
+    status.textContent =
+      "Current accent: " + names[color];
+  }
+
+  showNotification(
+    names[color] + " accent colour activated."
+  );
+   }
 // V6.3 ANIMATION CONTROL
 function toggleAnimations(){
 
@@ -2313,6 +2376,43 @@ if(document.readyState === "loading"){
 } else {
   restoreSavedTheme();
 }
+// V7.5 RESTORE ACCENT COLOUR
+function restoreAccentColor(){
+  const saved = localStorage.getItem("lextrades-accent");
+
+  const allowedColors = [
+    "#00d4ff",
+    "#a855f7",
+    "#22c55e",
+    "#f59e0b",
+    "#ef4444"
+  ];
+
+  const color = allowedColors.includes(saved)
+    ? saved
+    : "#00d4ff";
+
+  document.documentElement.style.setProperty(
+    "--accent-color",
+    color
+  );
+
+  const names = {
+    "#00d4ff":"Cyan",
+    "#a855f7":"Purple",
+    "#22c55e":"Green",
+    "#f59e0b":"Gold",
+    "#ef4444":"Red"
+  };
+
+  const status = document.getElementById("accent-color-status");
+
+  if(status){
+    status.textContent = "Current accent: " + names[color];
+  }
+}
+
+restoreAccentColor();
  // V5.8 SETTINGS PANEL CONTROL
 function toggleSettings(){
   const panel = document.getElementById("user-settings");
