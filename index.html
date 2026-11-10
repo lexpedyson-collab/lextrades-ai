@@ -638,6 +638,33 @@ body.animations-off *::after {
   </div>
 
 </div>
+ <!-- V7.4 DASHBOARD SEARCH -->
+<div class="card" id="dashboard-search" style="
+  padding:18px;
+  margin-top:12px;
+  border:1px solid #00d4ff;
+  border-radius:16px;
+">
+  <h3>🔎 Dashboard Search</h3>
+  <p class="muted">Find sections in LEXTRADES AI.</p>
+
+  <input
+    type="text"
+    id="dashboard-search-input"
+    placeholder="Search dashboard..."
+    oninput="searchDashboard(this.value)"
+    style="
+      width:100%;
+      padding:12px;
+      border-radius:8px;
+      box-sizing:border-box;
+    "
+  >
+
+  <div id="dashboard-search-results">
+    <p class="muted">Start typing to search.</p>
+  </div>
+</div>
  <!-- V7.1 NOTIFICATION CENTRE -->
 <div class="card" id="notification-centre" style="
   padding:18px;
@@ -1991,6 +2018,61 @@ function clearActivityHistory(){
   }
 
   alert("Activity history cleared successfully!");
+}
+ // V7.4 DASHBOARD SEARCH
+function searchDashboard(query){
+  const results = document.getElementById(
+    "dashboard-search-results"
+  );
+
+  if(!results) return;
+
+  results.innerHTML = "";
+
+  if(!query.trim()){
+    results.innerHTML =
+      '<p class="muted">Start typing to search.</p>';
+    return;
+  }
+
+  const headings = document.querySelectorAll(
+    "h2, h3, h4"
+  );
+
+  let found = 0;
+
+  headings.forEach(heading => {
+    const title = heading.textContent.trim();
+
+    if(
+      title.toLowerCase().includes(query.toLowerCase()) &&
+      !heading.closest("#dashboard-search")
+    ){
+      const target = heading.closest(
+        ".card, .result, section"
+      );
+
+      if(!target) return;
+
+      const button = document.createElement("button");
+      button.textContent = "🔎 " + title;
+
+      button.onclick = function(){
+        target.scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+      };
+
+      results.appendChild(button);
+      found++;
+    }
+  });
+
+  if(found === 0){
+    results.innerHTML =
+      '<p class="muted">No matching sections found.</p>';
+  }
 }
 function resetSample(){
   sample.splice(0, sample.length, ...originalSample);
