@@ -652,6 +652,15 @@ body.animations-off *::after {
     <p class="muted">No new notifications.</p>
   </div>
 </div>
+ <button onclick="clearNotifications()" style="
+  background:linear-gradient(135deg,#dc2626,#991b1b);
+  color:white;
+  border:1px solid #ef4444;
+  margin-top:10px;
+">
+  🗑 CLEAR NOTIFICATIONS
+ </button>
+ 
  <!-- V7.2 ACTIVITY HISTORY -->
 <div class="card" id="activity-history" style="
   padding:18px;
@@ -1940,6 +1949,23 @@ function logActivity(message){
   }
 
   list.prepend(item);
+}
+ // V7.3 CLEAR NOTIFICATIONS
+function clearNotifications(){
+  const confirmClear = confirm(
+    "Are you sure you want to clear all notifications?"
+  );
+
+  if(!confirmClear) return;
+
+  const list = document.getElementById("notification-list");
+
+  if(list){
+    list.innerHTML =
+      '<p class="muted">No new notifications.</p>';
+  }
+
+  alert("Notifications cleared successfully!");
 }
 function resetSample(){
   sample.splice(0, sample.length, ...originalSample);
