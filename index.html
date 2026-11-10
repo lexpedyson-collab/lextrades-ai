@@ -561,6 +561,33 @@ body:not(.animations-off) .card:nth-of-type(5) {
 body:not(.animations-off) .engine-indicator {
   animation: enginePulse 1.5s infinite;
 }
+ /* V8.3 FIXED MOBILE NAVIGATION */
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #0b1424;
+  border-top: 1px solid var(--accent-color);
+  padding: 12px 4px;
+  box-sizing: border-box;
+}
+
+nav a {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+body {
+  padding-bottom: 75px;
+}
 </style>
 </head>
 <body>
