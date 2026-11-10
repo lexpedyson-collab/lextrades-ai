@@ -675,6 +675,14 @@ body.animations-off *::after {
     <p class="muted">No activity recorded yet.</p>
   </div>
 </div>
+ <button onclick="clearActivityHistory()" style="
+  background:linear-gradient(135deg,#dc2626,#991b1b);
+  color:white;
+  border:1px solid #ef4444;
+  margin-top:10px;
+">
+  🗑 CLEAR ACTIVITY HISTORY
+ </button>
 <div style="margin:20px 0 18px;">
   <h2 style="
     font-size:26px;
@@ -1966,6 +1974,23 @@ function clearNotifications(){
   }
 
   alert("Notifications cleared successfully!");
+}
+ // V7.3 CLEAR ACTIVITY HISTORY
+function clearActivityHistory(){
+  const confirmClear = confirm(
+    "Are you sure you want to clear all activity history?"
+  );
+
+  if(!confirmClear) return;
+
+  const list = document.getElementById("activity-list");
+
+  if(list){
+    list.innerHTML =
+      '<p class="muted">No activity recorded yet.</p>';
+  }
+
+  alert("Activity history cleared successfully!");
 }
 function resetSample(){
   sample.splice(0, sample.length, ...originalSample);
