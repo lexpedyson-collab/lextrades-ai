@@ -2752,6 +2752,32 @@ function updateDashboardUptime(){
 
 updateDashboardUptime();
 setInterval(updateDashboardUptime, 1000);
+ // V8.8 BROWSER STATUS
+const browserStatus = document.getElementById("browser-status");
+
+if(browserStatus){
+  browserStatus.textContent = navigator.onLine
+    ? "ONLINE"
+    : "OFFLINE";
+
+  browserStatus.style.color = navigator.onLine
+    ? "#22c55e"
+    : "#ef4444";
+}
+
+window.addEventListener("online", function(){
+  if(browserStatus){
+    browserStatus.textContent = "ONLINE";
+    browserStatus.style.color = "#22c55e";
+  }
+});
+
+window.addEventListener("offline", function(){
+  if(browserStatus){
+    browserStatus.textContent = "OFFLINE";
+    browserStatus.style.color = "#ef4444";
+  }
+});
 </script>
  <button onclick="window.scrollTo({
   top: 0,
