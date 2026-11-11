@@ -591,6 +591,26 @@ nav a {
 body {
   padding-bottom: 75px;
 }
+ /* V8.4 QUICK ACCESS BUTTONS */
+.quick-link {
+  flex: 1;
+  min-width: 95px;
+  padding: 12px 10px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--accent-color);
+  background: rgba(0,212,255,0.08);
+  border: 1px solid var(--accent-color);
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.quick-link:active {
+  transform: scale(0.96);
+  background: rgba(0,212,255,0.18);
+}
 </style>
 </head>
 <body>
@@ -764,6 +784,17 @@ body {
   <h2 style="margin-bottom:8px;">
     Welcome to LEXTRADES AI
   </h2>
+ <!-- V8.4 QUICK ACCESS -->
+<div style="
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:18px 0;
+">
+  <a href="#market" class="quick-link">◈ Markets</a>
+  <a href="#scanresult" class="quick-link">▦ Analysis</a>
+  <a href="javascript:void(0)" onclick="openSettings()" class="quick-link">⚙ Settings</a>
+</div>
  <p style="
   color:#00d4ff;
   font-weight:bold;
