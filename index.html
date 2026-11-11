@@ -2226,8 +2226,13 @@ function compareSamples(){
   ).toFixed(2);
 
   const report = `
-LEXTRADES AI V5.1
-EDUCATIONAL STATISTICAL REPORT
+LEXTRADES AI V9.1
+PROFESSIONAL EDUCATIONAL STATISTICAL REPORT
+
+Generated: ${new Date().toLocaleString()}
+Platform: LEXPEDY NETWORKS
+Data Mode: EDUCATIONAL DEMO
+----------------------------------------
 
 Sample size: ${data.length}
 Average digit: ${average}
@@ -2238,15 +2243,18 @@ ${ranked.map(x =>
   x.count + " (" + x.percent + "%)"
 ).join("\n")}
 
-EVEN AND ODD
+EVEN AND ODD DISTRIBUTION
+----------------------------------------
 Even: ${even}
 Odd: ${odd}
 
-OVER AND UNDER
+OVER AND UNDER DISTRIBUTION
+----------------------------------------
 Over 4: ${over}
 Under 5: ${under}
 
-NOTE:
+REPORT NOTES
+----------------------------------------
 This report uses historical sample data only.
 It does not predict future results.
 It is not live market data or a trading signal.
