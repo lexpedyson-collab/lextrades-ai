@@ -2710,6 +2710,26 @@ function updateLiveClock(){
 
 updateLiveClock();
 setInterval(updateLiveClock, 1000);
+ // V8.7 DASHBOARD UPTIME
+const dashboardStartTime = Date.now();
+
+function updateDashboardUptime(){
+  const uptime = document.getElementById("dashboard-uptime");
+  if(!uptime) return;
+
+  const elapsed = Math.floor(
+    (Date.now() - dashboardStartTime) / 1000
+  );
+
+  const hours = String(Math.floor(elapsed / 3600)).padStart(2,"0");
+  const minutes = String(Math.floor((elapsed % 3600) / 60)).padStart(2,"0");
+  const seconds = String(elapsed % 60).padStart(2,"0");
+
+  uptime.textContent = hours + ":" + minutes + ":" + seconds;
+}
+
+updateDashboardUptime();
+setInterval(updateDashboardUptime, 1000);
 </script>
  <button onclick="window.scrollTo({
   top: 0,
