@@ -746,6 +746,21 @@ body {
   <button onclick="window.print()">
   📄 SAVE STATISTICAL REPORT AS PDF
   </button>
+  <!-- V9.3 REPORT PREVIEW -->
+<button onclick="previewReport()">
+  👁️ PREVIEW STATISTICAL REPORT
+</button>
+
+<div id="report-preview" class="result" style="display:none;">
+  <h3 style="color:var(--accent-color);">
+    STATISTICAL REPORT PREVIEW
+  </h3>
+  <pre id="report-preview-content"
+       style="white-space:pre-wrap;overflow-wrap:anywhere;"></pre>
+  <button onclick="document.getElementById('report-preview').style.display='none'">
+    CLOSE PREVIEW
+  </button>
+</div>
   <div class="result">
   <h3>🗂️ SAMPLE DATA MANAGER</h3>
 
@@ -2202,6 +2217,69 @@ function compareSamples(){
       <p>Never enter your password, API token or payment details here.</p>
     `;
   }
+ }
+ // V9.3 EDUCATIONAL REPORT PREVIEW
+function previewReport(){
+  const data = activeSample();
+  const c = counts();
+
+  if(data.length === 0){
+    alert("No sample data available.");
+    return;
+  }
+
+  const ranked = c.map((count, digit) => ({
+    digit,
+    count,
+    percent: (count / data.length * 100).toFixed(1)
+  })).sort((a,b) => b.count - a.count);
+
+  const even = data.filter(n => n % 2 === 0).length;
+  const odd = data.length - even;
+  const over = data.filter(n => n > 4).length;
+  const under = data.length - over;
+
+  const average = (
+    data.reduce((sum,n) => sum + n, 0) / data.length
+  ).toFixed(2);
+
+  const report = `
+LEXTRADES AI V9.1
+PROFESSIONAL EDUCATIONAL STATISTICAL REPORT
+
+Generated: ${new Date().toLocaleString()}
+Platform: LEXPEDY NETWORKS
+Data Mode: EDUCATIONAL DEMO
+----------------------------------------
+
+Sample size: ${data.length}
+Average digit: ${average}
+
+DIGIT FREQUENCIES
+${ranked.map(x =>
+  "Digit " + x.digit + ": " +
+  x.count + " (" + x.percent + "%)"
+).join("\n")}
+
+EVEN AND ODD DISTRIBUTION
+----------------------------------------
+Even: ${even}
+Odd: ${odd}
+
+OVER AND UNDER DISTRIBUTION
+----------------------------------------
+Over 4: ${over}
+Under 5: ${under}
+
+REPORT NOTES
+----------------------------------------
+This report uses historical sample data only.
+It does not predict future results.
+It is not live market data or a trading signal.
+`;
+
+  document.getElementById("report-preview-content").textContent = report;
+  document.getElementById("report-preview").style.display = "block";
  }
  function exportReport(){
 
