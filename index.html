@@ -795,6 +795,14 @@ body {
   <a href="#scanresult" class="quick-link">▦ Analysis</a>
   <a href="javascript:void(0)" onclick="openSettings()" class="quick-link">⚙ Settings</a>
 </div>
+ <!-- V8.5 LIVE CLOCK -->
+<div class="card" style="text-align:center;margin-top:15px;">
+  <p class="muted">LOCAL DATE & TIME</p>
+  <h2 id="live-clock" style="color:var(--accent-color);">
+    Loading time...
+  </h2>
+  <p id="live-date" class="muted"></p>
+</div>
  <p style="
   color:#00d4ff;
   font-weight:bold;
@@ -2651,6 +2659,29 @@ function toggleSettings(){
     });
   }
 }
+ // V8.5 LIVE CLOCK
+function updateLiveClock(){
+  const now = new Date();
+
+  const clock = document.getElementById("live-clock");
+  const date = document.getElementById("live-date");
+
+  if(clock){
+    clock.textContent = now.toLocaleTimeString("en-KE");
+  }
+
+  if(date){
+    date.textContent = now.toLocaleDateString("en-KE", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+  }
+}
+
+updateLiveClock();
+setInterval(updateLiveClock, 1000);
 </script>
  <button onclick="window.scrollTo({
   top: 0,
